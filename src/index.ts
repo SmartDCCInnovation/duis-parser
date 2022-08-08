@@ -18,26 +18,145 @@
  */
 
 import { XMLParser, XMLBuilder } from 'fast-xml-parser'
-import { CommandVariant, lookupCV } from './cv'
+import { CommandVariant, isCommandVariant, lookupCV } from './cv'
 import { addPrefixToObject } from './util'
 export { CommandVariant, lookupCV } from './cv'
 
-export interface SimplifiedDuis<T> {
-  header: {
-    commandVariant: T
-    requestId: {
-      originatorId: string
-      targetId: string
-      counter: number
+export interface RequestId {
+  originatorId: string
+  targetId: string
+  counter: number
+}
+
+export function isRequestId(o: unknown): o is RequestId {
+  const x = o as RequestId
+  return (
+    x !== null &&
+    typeof x === 'object' &&
+    'originatorId' in x &&
+    'targetId' in x &&
+    'counter' in x &&
+    typeof x.counter === 'number' &&
+    typeof x.targetId === 'string' &&
+    typeof x.originatorId === 'string'
+  )
+}
+
+function parseRequestID(id: string): RequestId {
+  if (typeof id === 'string') {
+    const parts = id.toLowerCase().split(':')
+    if (parts.length === 3) {
+      return {
+        originatorId: parts[0],
+        targetId: parts[1],
+        counter: Number(parts[2]),
+      }
     }
-    serviceReference: string
-    serviceReferenceVariant: string
   }
-  body: any
+  throw new Error('bad request id')
+}
+
+export interface RequestHeader<CV> {
+  type: 'request'
+  commandVariant: CV
+  requestId: RequestId
+  serviceReference: string
+  serviceReferenceVariant: string
+}
+
+export function isRequestHeader<CV>(
+  o: unknown,
+  isCV: (o: unknown) => o is CV
+): o is RequestHeader<CV> {
+  const x = o as RequestHeader<CV>
+  return (
+    x !== null &&
+    typeof x === 'object' &&
+    x.type === 'request' &&
+    isCV(x.commandVariant) &&
+    isRequestId(x.requestId) &&
+    typeof x.serviceReference === 'string' &&
+    typeof x.serviceReferenceVariant === 'string'
+  )
+}
+
+export interface ResponseHeader {
+  type: 'response'
+  requestId?: RequestId
+  responseId?: RequestId
+  responseCode: string
+  responseDateTime: string
+}
+
+export function isResponseHeader(o: unknown): o is ResponseHeader {
+  const x = o as ResponseHeader
+  return (
+    x !== null &&
+    typeof x === 'object' &&
+    x.type === 'response' &&
+    (x.requestId === undefined || isRequestId(x.requestId)) &&
+    (x.responseId === undefined || isRequestId(x.responseId)) &&
+    typeof x.responseCode === 'string' &&
+    typeof x.responseDateTime === 'string'
+  )
+}
+
+/**
+ * General tree structure of strings to hold parsed DUIS.
+ */
+export interface XMLData {
+  [key: string]: string | XMLData | XMLData[]
+}
+
+export function isXMLData(o: unknown): o is XMLData {
+  const x = o as XMLData
+  return (
+    x !== null &&
+    typeof x === 'object' &&
+    !Array.isArray(x) &&
+    Object.keys(x).every(
+      (k) =>
+        typeof x[k] === 'string' ||
+        isXMLData(x[k]) ||
+        (Array.isArray(x[k]) && (x[k] as XMLData[]).every(isXMLData))
+    )
+  )
+}
+
+export interface SimplifiedDuis<CV> {
+  header: RequestHeader<CV> | ResponseHeader
+  body: XMLData
 }
 
 export type SimplifiedDuisOutput = SimplifiedDuis<CommandVariant>
-export type SimplifiedDuisInput = SimplifiedDuis<CommandVariant | number>
+export type SimplifiedDuisInput = SimplifiedDuis<
+  CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+>
+
+export function isSimplifiedDuis<CV>(
+  o: unknown,
+  isCV: (o: unknown) => o is CV
+): o is SimplifiedDuis<CV> {
+  const x = o as SimplifiedDuis<CV>
+  return (
+    x !== null &&
+    typeof x === 'object' &&
+    isXMLData(x.body) &&
+    (isRequestHeader(x.header, isCV) || isResponseHeader(x.header))
+  )
+}
+
+export function isSimplifiedDuisOutput(o: unknown): o is SimplifiedDuisOutput {
+  return isSimplifiedDuis<CommandVariant>(o, isCommandVariant)
+}
+export function isSimplifiedDuisInput(o: unknown): o is SimplifiedDuisInput {
+  return isSimplifiedDuis<CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8>(
+    o,
+    (o: unknown): o is CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 => {
+      return (typeof o === 'number' && o >= 1 && o <= 8) || isCommandVariant(o)
+    }
+  )
+}
 
 /**
  * Instead of fully parsing the DUIS into a JSON wil all namespaces, etc
@@ -51,12 +170,12 @@ export function parseDuis(
 /**
  * Full parse of DUIS, namespaces and all.
  */
-export function parseDuis(mode: 'normal', xmlData: string | Buffer): any
+export function parseDuis(mode: 'normal', xmlData: string | Buffer): XMLData
 
 export function parseDuis(
   mode: 'normal' | 'simplified',
   xmlData: string | Buffer
-): any {
+): SimplifiedDuisOutput | XMLData {
   const parser = new XMLParser({
     ignoreAttributes: false,
     removeNSPrefix: mode === 'simplified',
@@ -72,61 +191,122 @@ export function parseDuis(
   }
   /* below are unsafe, but function should only be called on a validated duis
   file. */
-  const header = object?.Request?.Header
-  const requestId = (header?.RequestID as string).toLowerCase().split(':')
-  const x: SimplifiedDuisOutput = {
-    header: {
-      requestId: {
-        originatorId: requestId[0],
-        targetId: requestId[1],
-        counter: Number(requestId[2]),
+  if (object && 'Request' in object && 'Header' in object.Request) {
+    const header = object.Request.Header
+    const requestId = header.RequestID as string
+    const x: SimplifiedDuisOutput = {
+      header: {
+        type: 'request',
+        requestId: parseRequestID(requestId),
+        commandVariant: lookupCV(
+          Number(header?.CommandVariant) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+        ),
+        serviceReference: header?.ServiceReference,
+        serviceReferenceVariant: header?.ServiceReferenceVariant,
       },
-      commandVariant: lookupCV(
-        Number(header?.CommandVariant) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
-      ),
-      serviceReference: header?.ServiceReference,
-      serviceReferenceVariant: header?.ServiceReferenceVariant,
-    },
-    body: object?.Request?.Body,
+      body: object.Request?.Body,
+    }
+    return x
   }
-  return x
+
+  if (object && 'Response' in object && 'Header' in object.Response) {
+    const header = object.Response.Header
+    const requestIdText = header.RequestID as string | undefined
+    const responseIdText = header.ResponseID as string | undefined
+    const x: SimplifiedDuisOutput = {
+      header: {
+        type: 'response',
+        responseCode: header?.ResponseCode,
+        responseDateTime: header?.ResponseDateTime,
+      },
+      body: object.Response?.Body,
+    }
+    if (typeof requestIdText === 'string') {
+      x.header.requestId = parseRequestID(requestIdText)
+    }
+    if (typeof responseIdText === 'string') {
+      ;(x.header as ResponseHeader).responseId = parseRequestID(responseIdText)
+    }
+    return x
+  }
+
+  throw new Error('bad format duis')
 }
 
-export function constructDuis(
-  mode: 'normal',
-  object: any,
-  version?: string
-): string
+export function constructDuis(mode: 'normal', object: XMLData): string
 export function constructDuis(
   mode: 'simplified',
   object: SimplifiedDuisInput,
   version?: string
 ): string
 
+/**
+ * Use fast-xml-parser to construct a DUIS xml (without signature). Recommended
+ * to use "simplified" mode.
+ *
+ * @param mode is either "normal" or "simplifed"
+ * @param object when "simplified" should be a SimplifiedDuisInput, otherwise it
+ * is a fast-xml-parser input
+ * @param version when "simplified" is an optional duis version that is written
+ * into xml
+ * @returns
+ */
 export function constructDuis(
   mode: 'normal' | 'simplified',
-  object: any,
+  object: XMLData | SimplifiedDuisInput,
   version?: string
 ): string {
   if (mode === 'simplified') {
     const simple = object as SimplifiedDuisInput
-    object = {
-      '?xml': { '@_version': '1.0', '@_encoding': 'UTF-8' },
-      'sr:Request': {
-        '@_xmlns:sr': 'http://www.dccinterface.co.uk/ServiceUserGateway',
-        '@_xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-        '@_schemaVersion': version ?? '5.1',
-        'sr:Header': {
-          'sr:RequestID': `${simple.header.requestId.originatorId}:${simple.header.requestId.targetId}:${simple.header.requestId.counter}`,
-          'sr:CommandVariant':
-            typeof simple.header.commandVariant === 'number'
-              ? simple.header.commandVariant
-              : simple.header.commandVariant.number,
-          'sr:ServiceReference': simple.header.serviceReference,
-          'sr:ServiceReferenceVariant': simple.header.serviceReferenceVariant,
+    if (
+      !simple.header ||
+      ['request', 'response'].indexOf(simple.header.type) < 0
+    ) {
+      throw new Error('bad header')
+    }
+    if (simple.header.type === 'request') {
+      object = {
+        '?xml': { '@_version': '1.0', '@_encoding': 'UTF-8' },
+        'sr:Request': {
+          '@_xmlns:sr': 'http://www.dccinterface.co.uk/ServiceUserGateway',
+          '@_xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+          '@_schemaVersion': version ?? '5.1',
+          'sr:Header': {
+            'sr:RequestID': `${simple.header.requestId.originatorId}:${simple.header.requestId.targetId}:${simple.header.requestId.counter}`,
+            'sr:CommandVariant':
+              typeof simple.header.commandVariant === 'number'
+                ? String(simple.header.commandVariant)
+                : String(simple.header.commandVariant.number),
+            'sr:ServiceReference': simple.header.serviceReference,
+            'sr:ServiceReferenceVariant': simple.header.serviceReferenceVariant,
+          },
+          'sr:Body': addPrefixToObject('sr:', simple.body) as XMLData,
         },
-        'sr:Body': addPrefixToObject('sr:', simple.body),
-      },
+      }
+    } else {
+      object = {
+        '?xml': { '@_version': '1.0', '@_encoding': 'UTF-8' },
+        'sr:Response': {
+          '@_xmlns:sr': 'http://www.dccinterface.co.uk/ServiceUserGateway',
+          '@_xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
+          '@_schemaVersion': version ?? '5.1',
+          'sr:Header': {
+            'sr:ResponseCode': simple.header.responseCode,
+            'sr:ResponseDateTime': simple.header.responseDateTime,
+          },
+          'sr:Body': addPrefixToObject('sr:', simple.body) as XMLData,
+        },
+      }
+      if (simple.header.requestId) {
+        ;((object['sr:Response'] as XMLData)['sr:Header'] as XMLData)[
+          'sr:RequestID'
+        ] = `${simple.header.requestId.originatorId}:${simple.header.requestId.targetId}:${simple.header.requestId.counter}`
+      }
+      if (simple.header.responseId) {
+        ;((object['sr:Response'] as XMLData)['sr:Header'] as XMLData)[
+          'sr:ResponseID'
+        ] = `${simple.header.responseId.originatorId}:${simple.header.responseId.targetId}:${simple.header.responseId.counter}`
+      }
     }
   }
   const builder = new XMLBuilder({

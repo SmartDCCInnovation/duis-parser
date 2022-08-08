@@ -234,3 +234,21 @@ export function lookupCV(cv: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8): CommandVariant {
   }
   throw new Error('cv out of range')
 }
+
+export function isCommandVariant(o: unknown): o is CommandVariant {
+  const x = o as CommandVariant
+  const p = x !== null && typeof x === 'object' && typeof x.number === 'number'
+  if (p) {
+    try {
+      const spec = lookupCV(x.number)
+      return Object.keys(spec).every(
+        (k) =>
+          (spec as Record<string, string | number>)[k] ===
+          (x as Record<string, string | number>)[k]
+      )
+    } catch {
+      return false
+    }
+  }
+  return false
+}

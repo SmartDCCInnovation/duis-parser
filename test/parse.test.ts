@@ -22,7 +22,7 @@ import * as cv from '../src/cv'
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
-describe('test parser nominal with SRV 1.1.1', () => {
+describe('parser SRV 1.1.1/nominal', () => {
   ;[true, false].forEach((b) => {
     test(b ? 'from-buffer' : 'from-string', async () => {
       const buffer = await readFile(
@@ -44,7 +44,7 @@ describe('test parser nominal with SRV 1.1.1', () => {
       )
       expect(request).toHaveProperty('sr:Header')
       expect(request).toHaveProperty('sr:Body')
-      const header = request['sr:Header']
+      const header = (request as parser.XMLData)['sr:Header']
       expect(header).toHaveProperty(
         'sr:RequestID',
         '90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A0:1007'
@@ -54,7 +54,7 @@ describe('test parser nominal with SRV 1.1.1', () => {
   })
 })
 
-describe('test parser nominal with SRV 4.1.1', () => {
+describe('parser SRV 4.1.1/normal', () => {
   ;[true, false].forEach((b) => {
     test(b ? 'from-buffer' : 'from-string', async () => {
       const buffer = await readFile(
@@ -76,19 +76,19 @@ describe('test parser nominal with SRV 4.1.1', () => {
       )
       expect(request).toHaveProperty('sr:Header')
       expect(request).toHaveProperty('sr:Body')
-      const header = request['sr:Header']
+      const header = (request as parser.XMLData)['sr:Header']
       expect(header).toHaveProperty(
         'sr:RequestID',
         '90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:1000'
       )
       expect(header).toHaveProperty('sr:ServiceReferenceVariant', '4.1.1')
-      const body = request['sr:Body']
+      const body = (request as parser.XMLData)['sr:Body']
       expect(body).toHaveProperty('sr:ReadInstantaneousImportRegisters', '')
     })
   })
 })
 
-describe('test parser simplified with SRV 4.1.1', () => {
+describe('parser SRV 4.1.1/simplified', () => {
   ;[true, false].forEach((b) => {
     test(b ? 'from-buffer' : 'from-string', async () => {
       const buffer = await readFile(
@@ -102,7 +102,7 @@ describe('test parser simplified with SRV 4.1.1', () => {
         'simplified',
         b ? buffer : buffer.toString('utf-8')
       )
-      expect(result).toStrictEqual({
+      expect(result).toMatchObject({
         header: {
           commandVariant: cv.lookupCV(1),
           requestId: {
@@ -128,11 +128,58 @@ describe('test parser simplified with SRV 4.1.1', () => {
         'GCS13a_4.1.1_SUCCESS_RELIABLE_GSME_REQUEST_DUIS.XML'
       )
     )
-    const raw = parser.parseDuis('normal', buffer)
+    const raw = parser.parseDuis('normal', buffer) as any
     const result = parser.parseDuis('simplified', buffer)
     expect(
-      raw?.['sr:Request']?.['sr:Header']?.['sr:RequestID'] as string
+      raw['sr:Request']?.['sr:Header']?.['sr:RequestID'] as string
     ).toContain('90-B3-D5-1F-30-01-00-00')
-    expect(result.header.requestId.originatorId).toBe('90-b3-d5-1f-30-01-00-00')
+    expect(result.header.requestId?.originatorId).toBe(
+      '90-b3-d5-1f-30-01-00-00'
+    )
+  })
+})
+
+describe('parser response', () => {
+  test('acknowledgement-error/normal', async () => {
+    const buffer = await readFile(
+      resolve(__dirname, 'resources', 'acknowledgement-error.xml')
+    )
+    const result = parser.parseDuis('normal', buffer)
+    expect(result).toMatchObject({
+      'sr:Response': {
+        'sr:Header': {
+          'sr:RequestID':
+            '90-B3-D5-1F-30-01-00-00:88-73-84-57-00-2F-96-6C:1658482675800',
+          'sr:ResponseCode': 'E65',
+        },
+        'sr:Body': {
+          'sr:ResponseMessage': {
+            'sr:ServiceReferenceVariant': '11.2',
+          },
+        },
+      },
+    })
+  })
+
+  test('acknowledgement-error/simplified', async () => {
+    const buffer = await readFile(
+      resolve(__dirname, 'resources', 'acknowledgement-error.xml')
+    )
+    const result = parser.parseDuis('simplified', buffer)
+    expect(result).toMatchObject({
+      header: {
+        type: 'response',
+        requestId: {
+          originatorId: '90-b3-d5-1f-30-01-00-00',
+          targetId: '88-73-84-57-00-2f-96-6c',
+        },
+        responseCode: 'E65',
+      },
+      body: {
+        ResponseMessage: {
+          ServiceReferenceVariant: '11.2',
+        },
+      },
+    })
   })
 })
