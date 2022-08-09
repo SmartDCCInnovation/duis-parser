@@ -66,7 +66,7 @@ manageable structure and removes the namespaces so it is more manageable.
 
 ## Other Info
 
-Copyright 2022, Smart DCC Limited, All rights reserved. Project is licensed under GLPv3.
+Copyright 2022, Smart DCC Limited, All rights reserved. Project is licensed under GPLv3.
 
 
 [duis]: https://smartenergycodecompany.co.uk/the-smart-energy-code-2/ "Smart Energy Code"
