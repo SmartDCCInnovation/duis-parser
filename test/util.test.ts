@@ -71,4 +71,20 @@ describe('addPrefixToObject', () => {
       test5: 2,
     })
   })
+
+  test('attribute', () => {
+    expect(
+      util.addPrefixToObject('ns:', { hello: { '@_att': '123' } })
+    ).toStrictEqual({
+      'ns:hello': { '@_att': '123' },
+    })
+  })
+
+  test('text', () => {
+    expect(
+      util.addPrefixToObject('ns:', { hello: { '#text': '123' } })
+    ).toStrictEqual({
+      'ns:hello': { '#text': '123' },
+    })
+  })
 })

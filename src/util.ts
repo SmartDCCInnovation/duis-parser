@@ -24,12 +24,13 @@ export function addPrefixToObject(prefix: string, o: unknown): unknown {
     } else {
       return Object.assign(
         {},
-        ...Object.keys(o as Record<string | number, unknown>).map((k) => ({
-          [`${prefix}${k}`]: addPrefixToObject(
-            prefix,
-            (o as Record<string, unknown>)[k]
-          ),
-        }))
+        ...Object.keys(o as Record<string | number, unknown>).map((k) => {
+          const p = (o as Record<string, unknown>)[k]
+          if (k.startsWith('@_') || k === '#text') {
+            return { [k]: p }
+          }
+          return { [`${prefix}${k}`]: addPrefixToObject(prefix, p) }
+        })
       )
     }
   }

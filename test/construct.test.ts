@@ -93,6 +93,29 @@ describe('constructDuis/simple', () => {
         parser.parseDuis('simplified', parser.constructDuis('simplified', x))
       ).toStrictEqual(x)
     })
+
+    test('nominal-attributes', () => {
+      const x: parser.SimplifiedDuisInput = {
+        header: {
+          type: 'request',
+          commandVariant: 1,
+          requestId: {
+            originatorId: '90-B3-D5-1F-30-01-00-00',
+            targetId: '00-DB-12-34-56-78-90-A3',
+            counter: 9001,
+          },
+          serviceReference: '4.1',
+          serviceReferenceVariant: '4.1.1',
+        },
+        body: {
+          '#text': '1',
+          '@_index': '3',
+        },
+      }
+      expect(parser.constructDuis('simplified', x)).toBe(
+        '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body index="3">1</sr:Body></sr:Request>'
+      )
+    })
   })
 
   describe('response', () => {
