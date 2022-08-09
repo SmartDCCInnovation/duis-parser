@@ -19,6 +19,11 @@
 
 import { XMLParser, XMLBuilder } from 'fast-xml-parser'
 import { CommandVariant, isCommandVariant, lookupCV } from './cv'
+import {
+  isServiceReferenceVariant,
+  lookupSRV,
+  ServiceReferenceVariant,
+} from './srv'
 import { addPrefixToObject } from './util'
 export { CommandVariant, lookupCV } from './cv'
 
@@ -56,19 +61,20 @@ function parseRequestID(id: string): RequestId {
   throw new Error('bad request id')
 }
 
-export interface RequestHeader<CV> {
+export interface RequestHeader<CV, SRV> {
   type: 'request'
   commandVariant: CV
   requestId: RequestId
   serviceReference: string
-  serviceReferenceVariant: string
+  serviceReferenceVariant: SRV
 }
 
-export function isRequestHeader<CV>(
+export function isRequestHeader<CV, SRV>(
   o: unknown,
-  isCV: (o: unknown) => o is CV
-): o is RequestHeader<CV> {
-  const x = o as RequestHeader<CV>
+  isCV: (o: unknown) => o is CV,
+  isSRV: (o: unknown) => o is SRV
+): o is RequestHeader<CV, SRV> {
+  const x = o as RequestHeader<CV, SRV>
   return (
     x !== null &&
     typeof x === 'object' &&
@@ -76,7 +82,7 @@ export function isRequestHeader<CV>(
     isCV(x.commandVariant) &&
     isRequestId(x.requestId) &&
     typeof x.serviceReference === 'string' &&
-    typeof x.serviceReferenceVariant === 'string'
+    isSRV(x.serviceReferenceVariant)
   )
 }
 
@@ -123,37 +129,52 @@ export function isXMLData(o: unknown): o is XMLData {
   )
 }
 
-export interface SimplifiedDuis<CV> {
-  header: RequestHeader<CV> | ResponseHeader
+export interface SimplifiedDuis<CV, SRV> {
+  header: RequestHeader<CV, SRV> | ResponseHeader
   body: XMLData
 }
 
-export type SimplifiedDuisOutput = SimplifiedDuis<CommandVariant>
+export type SimplifiedDuisOutput = SimplifiedDuis<
+  CommandVariant,
+  ServiceReferenceVariant
+>
 export type SimplifiedDuisInput = SimplifiedDuis<
-  CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+  CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+  ServiceReferenceVariant | string
 >
 
-export function isSimplifiedDuis<CV>(
+export function isSimplifiedDuis<CV, SRV>(
   o: unknown,
-  isCV: (o: unknown) => o is CV
-): o is SimplifiedDuis<CV> {
-  const x = o as SimplifiedDuis<CV>
+  isCV: (o: unknown) => o is CV,
+  isSRV: (o: unknown) => o is SRV
+): o is SimplifiedDuis<CV, SRV> {
+  const x = o as SimplifiedDuis<CV, SRV>
   return (
     x !== null &&
     typeof x === 'object' &&
     isXMLData(x.body) &&
-    (isRequestHeader(x.header, isCV) || isResponseHeader(x.header))
+    (isRequestHeader(x.header, isCV, isSRV) || isResponseHeader(x.header))
   )
 }
 
 export function isSimplifiedDuisOutput(o: unknown): o is SimplifiedDuisOutput {
-  return isSimplifiedDuis<CommandVariant>(o, isCommandVariant)
+  return isSimplifiedDuis<CommandVariant, ServiceReferenceVariant>(
+    o,
+    isCommandVariant,
+    isServiceReferenceVariant
+  )
 }
 export function isSimplifiedDuisInput(o: unknown): o is SimplifiedDuisInput {
-  return isSimplifiedDuis<CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8>(
+  return isSimplifiedDuis<
+    CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+    ServiceReferenceVariant | string
+  >(
     o,
     (o: unknown): o is CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 => {
       return (typeof o === 'number' && o >= 1 && o <= 8) || isCommandVariant(o)
+    },
+    (o: unknown): o is ServiceReferenceVariant | string => {
+      return typeof o === 'string' || isServiceReferenceVariant(o)
     }
   )
 }
@@ -194,6 +215,10 @@ export function parseDuis(
   if (object && 'Request' in object && 'Header' in object.Request) {
     const header = object.Request.Header
     const requestId = header.RequestID as string
+    const serviceReferenceVariant = lookupSRV(header?.ServiceReferenceVariant)
+    if (!serviceReferenceVariant) {
+      throw new Error(`could not find SRV ${header?.ServiceReferenceVariant}`)
+    }
     const x: SimplifiedDuisOutput = {
       header: {
         type: 'request',
@@ -202,7 +227,7 @@ export function parseDuis(
           Number(header?.CommandVariant) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
         ),
         serviceReference: header?.ServiceReference,
-        serviceReferenceVariant: header?.ServiceReferenceVariant,
+        serviceReferenceVariant,
       },
       body: object.Request?.Body,
     }
@@ -278,7 +303,12 @@ export function constructDuis(
                 ? String(simple.header.commandVariant)
                 : String(simple.header.commandVariant.number),
             'sr:ServiceReference': simple.header.serviceReference,
-            'sr:ServiceReferenceVariant': simple.header.serviceReferenceVariant,
+            'sr:ServiceReferenceVariant':
+              typeof simple.header.serviceReferenceVariant === 'string'
+                ? simple.header.serviceReferenceVariant
+                : simple.header.serviceReferenceVariant[
+                    'Service Reference Variant'
+                  ],
           },
           'sr:Body': addPrefixToObject('sr:', simple.body) as XMLData,
         },

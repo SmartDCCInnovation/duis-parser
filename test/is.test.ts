@@ -1,6 +1,25 @@
-import { lookup } from 'dns'
+/*
+ * Created on Tue Aug 09 2022
+ *
+ * Copyright (c) 2022 Smart DCC Limited
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 import * as cv from '../src/cv'
 import * as index from '../src/index'
+import * as srv from '../src/srv'
 
 describe('typeing judgements', () => {
   describe('CommandVariant', () => {
@@ -87,6 +106,178 @@ describe('typeing judgements', () => {
     })
   })
 
+  describe('ServiceRequestVariant', () => {
+    test('undefined', () => {
+      expect(srv.isServiceReferenceVariant(undefined)).toBeFalsy()
+    })
+    test('null', () => {
+      expect(srv.isServiceReferenceVariant(null)).toBeFalsy()
+    })
+    test('list', () => {
+      expect(srv.isServiceReferenceVariant([])).toBeFalsy()
+    })
+    test('number', () => {
+      expect(srv.isServiceReferenceVariant(5)).toBeFalsy()
+    })
+    test('string', () => {
+      expect(srv.isServiceReferenceVariant('')).toBeFalsy()
+    })
+    test('empty', () => {
+      expect(srv.isServiceReferenceVariant({})).toBeFalsy()
+    })
+
+    test('nominal', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference': '1.1',
+          'Service Reference Variant': '1.1.2',
+          Critical: 'Yes',
+          'On Demand': 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'DCC Scheduled': 'No',
+          'Non-Device Request': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeTruthy()
+    })
+
+    test('missing-serviceRequestName', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Reference': '1.1',
+          'Service Reference Variant': '1.1.2',
+          Critical: 'Yes',
+          'On Demand': 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'DCC Scheduled': 'No',
+          'Non-Device Request': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeFalsy()
+    })
+
+    test('missing-serviceReference', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference Variant': '1.1.2',
+          Critical: 'Yes',
+          'On Demand': 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'DCC Scheduled': 'No',
+          'Non-Device Request': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeFalsy()
+    })
+
+    test('missing-serviceReferenceVariant', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference': '1.1',
+          Critical: 'Yes',
+          'On Demand': 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'DCC Scheduled': 'No',
+          'Non-Device Request': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeFalsy()
+    })
+
+    test('missing-critical', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference': '1.1',
+          'Service Reference Variant': '1.1.2',
+          'On Demand': 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'DCC Scheduled': 'No',
+          'Non-Device Request': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeFalsy()
+    })
+
+    test('missing-onDemand', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference': '1.1',
+          'Service Reference Variant': '1.1.2',
+          Critical: 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'DCC Scheduled': 'No',
+          'Non-Device Request': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeFalsy()
+    })
+
+    test('missing-futureDatedResponsePattern', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference': '1.1',
+          'Service Reference Variant': '1.1.2',
+          Critical: 'Yes',
+          'On Demand': 'Yes',
+          'DCC Scheduled': 'No',
+          'Non-Device Request': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeFalsy()
+    })
+
+    test('missing-dccScheduled', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference': '1.1',
+          'Service Reference Variant': '1.1.2',
+          Critical: 'Yes',
+          'On Demand': 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'Non-Device Request': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeFalsy()
+    })
+
+    test('missing-nonDeviceRequest', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference': '1.1',
+          'Service Reference Variant': '1.1.2',
+          Critical: 'Yes',
+          'On Demand': 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'DCC Scheduled': 'No',
+          'Eligible User Roles': ['IS'],
+        })
+      ).toBeFalsy()
+    })
+
+    test('missing-eligibleUserRoles', () => {
+      expect(
+        srv.isServiceReferenceVariant({
+          'Service Request Name': 'Update Import Tariff (Secondary Element)',
+          'Service Reference': '1.1',
+          'Service Reference Variant': '1.1.2',
+          Critical: 'Yes',
+          'On Demand': 'Yes',
+          'Future Dated Response Pattern': 'Device',
+          'DCC Scheduled': 'No',
+          'Non-Device Request': 'No',
+        })
+      ).toBeFalsy()
+    })
+  })
+
   describe('RequestId', () => {
     test('undefined', () => {
       expect(index.isRequestId(undefined)).toBeFalsy()
@@ -155,22 +346,58 @@ describe('typeing judgements', () => {
 
   describe('RequestHeader', () => {
     test('undefined', () => {
-      expect(index.isRequestHeader(undefined, cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isRequestHeader(
+          undefined,
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('null', () => {
-      expect(index.isRequestHeader(null, cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isRequestHeader(
+          null,
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('list', () => {
-      expect(index.isRequestHeader([], cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isRequestHeader(
+          [],
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('number', () => {
-      expect(index.isRequestHeader(5, cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isRequestHeader(
+          5,
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('string', () => {
-      expect(index.isRequestHeader('', cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isRequestHeader(
+          '',
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('empty', () => {
-      expect(index.isRequestHeader({}, cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isRequestHeader(
+          {},
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
 
     test('nominal', () => {
@@ -185,9 +412,10 @@ describe('typeing judgements', () => {
               counter: 0,
             },
             serviceReference: 'string',
-            serviceReferenceVariant: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeTruthy()
     })
@@ -204,9 +432,10 @@ describe('typeing judgements', () => {
               counter: 0,
             },
             serviceReference: 'string',
-            serviceReferenceVariant: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -222,9 +451,10 @@ describe('typeing judgements', () => {
               counter: 0,
             },
             serviceReference: 'string',
-            serviceReferenceVariant: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -236,9 +466,10 @@ describe('typeing judgements', () => {
             type: 'request',
             commandVariant: cv.lookupCV(1),
             serviceReference: 'string',
-            serviceReferenceVariant: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -254,9 +485,10 @@ describe('typeing judgements', () => {
               counter: 0,
             },
             serviceReference: 'string',
-            serviceReferenceVariant: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -272,9 +504,10 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: 0,
             },
-            serviceReferenceVariant: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -292,7 +525,8 @@ describe('typeing judgements', () => {
             },
             serviceReference: 'string',
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -556,22 +790,58 @@ describe('typeing judgements', () => {
 
   describe('SimplifiedDuis', () => {
     test('undefined', () => {
-      expect(index.isSimplifiedDuis(undefined, cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isSimplifiedDuis(
+          undefined,
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('null', () => {
-      expect(index.isSimplifiedDuis(null, cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isSimplifiedDuis(
+          null,
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('list', () => {
-      expect(index.isSimplifiedDuis([], cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isSimplifiedDuis(
+          [],
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('number', () => {
-      expect(index.isSimplifiedDuis(5, cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isSimplifiedDuis(
+          5,
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('string', () => {
-      expect(index.isSimplifiedDuis('', cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isSimplifiedDuis(
+          '',
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
     test('empty', () => {
-      expect(index.isSimplifiedDuis({}, cv.isCommandVariant)).toBeFalsy()
+      expect(
+        index.isSimplifiedDuis(
+          {},
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
+        )
+      ).toBeFalsy()
     })
 
     test('nominal-request', () => {
@@ -587,11 +857,12 @@ describe('typeing judgements', () => {
                 counter: 0,
               },
               serviceReference: 'string',
-              serviceReferenceVariant: 'string',
+              serviceReferenceVariant: srv.lookupSRV('1.1.1'),
             },
             body: { a: 'c' },
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeTruthy()
     })
@@ -607,7 +878,8 @@ describe('typeing judgements', () => {
             },
             body: { a: 'c' },
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeTruthy()
     })
@@ -619,7 +891,8 @@ describe('typeing judgements', () => {
             header: {},
             body: { a: 'c' },
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -630,7 +903,8 @@ describe('typeing judgements', () => {
           {
             body: { a: 'c' },
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -655,7 +929,8 @@ describe('typeing judgements', () => {
               responseDateTime: 'string',
             },
           },
-          cv.isCommandVariant
+          cv.isCommandVariant,
+          srv.isServiceReferenceVariant
         )
       ).toBeFalsy()
     })
@@ -693,7 +968,7 @@ describe('typeing judgements', () => {
               counter: 0,
             },
             serviceReference: 'string',
-            serviceReferenceVariant: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
           body: { a: 'c' },
         })

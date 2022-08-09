@@ -19,6 +19,7 @@
 
 import * as parser from '../src/index'
 import * as cv from '../src/cv'
+import * as srv from '../src/srv'
 
 describe('constructDuis/simple', () => {
   describe('request', () => {
@@ -33,7 +34,9 @@ describe('constructDuis/simple', () => {
             counter: 9001,
           },
           serviceReference: '4.1',
-          serviceReferenceVariant: '4.1.1',
+          serviceReferenceVariant: srv.lookupSRV(
+            '4.1.1'
+          ) as srv.ServiceReferenceVariant,
         },
         body: {
           ReadInstantaneousImportRegisters: '',
@@ -78,7 +81,9 @@ describe('constructDuis/simple', () => {
             counter: 9001,
           },
           serviceReference: '4.1',
-          serviceReferenceVariant: '4.1.1',
+          serviceReferenceVariant: srv.lookupSRV(
+            '4.1.1'
+          ) as srv.ServiceReferenceVariant,
         },
         body: {
           ReadInstantaneousImportRegisters: '',

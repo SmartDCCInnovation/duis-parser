@@ -19,6 +19,7 @@
 
 import * as parser from '../src/index'
 import * as cv from '../src/cv'
+import * as srv from '../src/srv'
 import { readFile } from 'node:fs/promises'
 import { resolve } from 'node:path'
 
@@ -111,7 +112,9 @@ describe('parser SRV 4.1.1/simplified', () => {
             counter: 1000,
           },
           serviceReference: '4.1',
-          serviceReferenceVariant: '4.1.1',
+          serviceReferenceVariant: srv.lookupSRV(
+            '4.1.1'
+          ) as srv.ServiceReferenceVariant,
         },
         body: {
           ReadInstantaneousImportRegisters: '',
