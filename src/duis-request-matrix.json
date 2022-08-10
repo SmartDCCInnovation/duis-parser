@@ -439,8 +439,8 @@
     },
     {
         "Service Request Name": "Read Network Data",
-        "Service Reference": "4.1",
-        "Service Reference Variant": "4.1",
+        "Service Reference": "4.10",
+        "Service Reference Variant": "4.10",
         "Critical": "No",
         "On Demand": "Yes",
         "Future Dated Response Pattern": "DSP",
@@ -1194,8 +1194,8 @@
     },
     {
         "Service Request Name": "Read CHF Sub GHz Configuration",
-        "Service Reference": "6.3",
-        "Service Reference Variant": "6.3",
+        "Service Reference": "6.30",
+        "Service Reference Variant": "6.30",
         "Critical": "No",
         "On Demand": "Yes",
         "Future Dated Response Pattern": "No",
@@ -1365,8 +1365,8 @@
     },
     {
         "Service Request Name": "Remove Auxiliary Load From Boost Button",
-        "Service Reference": "7.1",
-        "Service Reference Variant": "7.1",
+        "Service Reference": "7.10",
+        "Service Reference Variant": "7.10",
         "Critical": "No",
         "On Demand": "Yes",
         "Future Dated Response Pattern": "DSP",
