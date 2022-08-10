@@ -26,6 +26,7 @@ import {
 } from './srv'
 import { addPrefixToObject } from './util'
 export { CommandVariant, lookupCV } from './cv'
+export { ServiceReferenceVariant, lookupSRV } from './srv'
 
 export interface RequestId {
   originatorId: string
