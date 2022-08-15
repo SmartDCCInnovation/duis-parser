@@ -1169,6 +1169,25 @@ describe('typeing judgements', () => {
       ).toBeTruthy()
     })
 
+    test('nominal-serviceReferenceVariant-struct', () => {
+      expect(
+        index.isSimplifiedDuisInput({
+          header: {
+            type: 'request',
+            commandVariant: 1,
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
+          },
+          body: { a: 'c' },
+        })
+      ).toBeTruthy()
+    })
+
     test('wrong-commandVariant-type', () => {
       expect(
         index.isSimplifiedDuisInput({
