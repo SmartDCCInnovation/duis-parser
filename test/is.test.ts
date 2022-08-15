@@ -995,6 +995,122 @@ describe('typeing judgements', () => {
     })
   })
 
+  describe('SimplifiedDuisOutputRequest', () => {
+    test('undefined', () => {
+      expect(index.isSimplifiedDuisOutputRequest(undefined)).toBeFalsy()
+    })
+    test('null', () => {
+      expect(index.isSimplifiedDuisOutputRequest(null)).toBeFalsy()
+    })
+    test('list', () => {
+      expect(index.isSimplifiedDuisOutputRequest([])).toBeFalsy()
+    })
+    test('number', () => {
+      expect(index.isSimplifiedDuisOutputRequest(5)).toBeFalsy()
+    })
+    test('string', () => {
+      expect(index.isSimplifiedDuisOutputRequest('')).toBeFalsy()
+    })
+    test('empty', () => {
+      expect(index.isSimplifiedDuisOutputRequest({})).toBeFalsy()
+    })
+
+    test('nominal-success', () => {
+      expect(
+        index.isSimplifiedDuisOutputRequest({
+          header: {
+            type: 'request',
+            commandVariant: cv.lookupCV(1),
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
+          },
+          body: { a: 'c' },
+        })
+      ).toBeTruthy()
+    })
+
+    test('nominal-fail', () => {
+      expect(
+        index.isSimplifiedDuisOutputRequest({
+          header: {
+            type: 'response',
+            responseId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            responseCode: 'string',
+            responseDateTime: 'string',
+          },
+          body: { a: 'c' },
+        })
+      ).toBeFalsy()
+    })
+  })
+
+  describe('SimplifiedDuisOutputResponse', () => {
+    test('undefined', () => {
+      expect(index.isSimplifiedDuisOutputResponse(undefined)).toBeFalsy()
+    })
+    test('null', () => {
+      expect(index.isSimplifiedDuisOutputResponse(null)).toBeFalsy()
+    })
+    test('list', () => {
+      expect(index.isSimplifiedDuisOutputResponse([])).toBeFalsy()
+    })
+    test('number', () => {
+      expect(index.isSimplifiedDuisOutputResponse(5)).toBeFalsy()
+    })
+    test('string', () => {
+      expect(index.isSimplifiedDuisOutputResponse('')).toBeFalsy()
+    })
+    test('empty', () => {
+      expect(index.isSimplifiedDuisOutputResponse({})).toBeFalsy()
+    })
+
+    test('nominal-success', () => {
+      expect(
+        index.isSimplifiedDuisOutputResponse({
+          header: {
+            type: 'response',
+            responseId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            responseCode: 'string',
+            responseDateTime: 'string',
+          },
+          body: { a: 'c' },
+        })
+      ).toBeTruthy()
+    })
+
+    test('nominal-fail', () => {
+      expect(
+        index.isSimplifiedDuisOutputResponse({
+          header: {
+            type: 'request',
+            commandVariant: cv.lookupCV(1),
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
+          },
+          body: { a: 'c' },
+        })
+      ).toBeFalsy()
+    })
+  })
+
   describe('SimplifiedDuisInput', () => {
     test('undefined', () => {
       expect(index.isSimplifiedDuisInput(undefined)).toBeFalsy()

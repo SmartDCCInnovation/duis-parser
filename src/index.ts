@@ -130,15 +130,29 @@ export function isXMLData(o: unknown): o is XMLData {
   )
 }
 
-export interface SimplifiedDuis<CV, SRV> {
-  header: RequestHeader<CV, SRV> | ResponseHeader
+export interface SimplifiedDuisRequest<CV, SRV> {
+  header: RequestHeader<CV, SRV>
   body: XMLData
 }
+
+export interface SimplifiedDuisResponse {
+  header: ResponseHeader
+  body: XMLData
+}
+
+export type SimplifiedDuis<CV, SRV> =
+  | SimplifiedDuisRequest<CV, SRV>
+  | SimplifiedDuisResponse
 
 export type SimplifiedDuisOutput = SimplifiedDuis<
   CommandVariant,
   ServiceReferenceVariant
 >
+export type SimplifiedDuisOutputRequest = SimplifiedDuisRequest<
+  CommandVariant,
+  ServiceReferenceVariant
+>
+export type SimplifiedDuisOutputResponse = SimplifiedDuisResponse
 export type SimplifiedDuisInput = SimplifiedDuis<
   CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
   ServiceReferenceVariant | string
@@ -158,6 +172,32 @@ export function isSimplifiedDuis<CV, SRV>(
   )
 }
 
+export function isSimplifiedDuisRequest<CV, SRV>(
+  o: unknown,
+  isCV: (o: unknown) => o is CV,
+  isSRV: (o: unknown) => o is SRV
+): o is SimplifiedDuisRequest<CV, SRV> {
+  const x = o as SimplifiedDuis<CV, SRV>
+  return (
+    x !== null &&
+    typeof x === 'object' &&
+    isXMLData(x.body) &&
+    isRequestHeader(x.header, isCV, isSRV)
+  )
+}
+
+export function isSimplifiedDuisResponse(
+  o: unknown
+): o is SimplifiedDuisResponse {
+  const x = o as SimplifiedDuisResponse
+  return (
+    x !== null &&
+    typeof x === 'object' &&
+    isXMLData(x.body) &&
+    isResponseHeader(x.header)
+  )
+}
+
 export function isSimplifiedDuisOutput(o: unknown): o is SimplifiedDuisOutput {
   return isSimplifiedDuis<CommandVariant, ServiceReferenceVariant>(
     o,
@@ -165,6 +205,21 @@ export function isSimplifiedDuisOutput(o: unknown): o is SimplifiedDuisOutput {
     isServiceReferenceVariant
   )
 }
+export function isSimplifiedDuisOutputRequest(
+  o: unknown
+): o is SimplifiedDuisOutputRequest {
+  return isSimplifiedDuisRequest<CommandVariant, ServiceReferenceVariant>(
+    o,
+    isCommandVariant,
+    isServiceReferenceVariant
+  )
+}
+export function isSimplifiedDuisOutputResponse(
+  o: unknown
+): o is SimplifiedDuisOutputResponse {
+  return isSimplifiedDuisResponse(o)
+}
+
 export function isSimplifiedDuisInput(o: unknown): o is SimplifiedDuisInput {
   return isSimplifiedDuis<
     CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
