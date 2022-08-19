@@ -20,6 +20,7 @@
 import * as cv from '../src/cv'
 import * as index from '../src/index'
 import * as srv from '../src/srv'
+import * as duis from '../src/duis'
 
 describe('typeing judgements', () => {
   describe('CommandVariant', () => {
@@ -280,27 +281,27 @@ describe('typeing judgements', () => {
 
   describe('RequestId', () => {
     test('undefined', () => {
-      expect(index.isRequestId(undefined)).toBeFalsy()
+      expect(duis.isRequestId(undefined)).toBeFalsy()
     })
     test('null', () => {
-      expect(index.isRequestId(null)).toBeFalsy()
+      expect(duis.isRequestId(null)).toBeFalsy()
     })
     test('list', () => {
-      expect(index.isRequestId([])).toBeFalsy()
+      expect(duis.isRequestId([])).toBeFalsy()
     })
     test('number', () => {
-      expect(index.isRequestId(5)).toBeFalsy()
+      expect(duis.isRequestId(5)).toBeFalsy()
     })
     test('string', () => {
-      expect(index.isRequestId('')).toBeFalsy()
+      expect(duis.isRequestId('')).toBeFalsy()
     })
     test('empty', () => {
-      expect(index.isRequestId({})).toBeFalsy()
+      expect(duis.isRequestId({})).toBeFalsy()
     })
 
     test('nominal', () => {
       expect(
-        index.isRequestId({
+        duis.isRequestId({
           originatorId: 'string',
           targetId: 'string',
           counter: 0,
@@ -310,7 +311,7 @@ describe('typeing judgements', () => {
 
     test('missing-originator', () => {
       expect(
-        index.isRequestId({
+        duis.isRequestId({
           targetId: 'string',
           counter: 0,
         })
@@ -318,7 +319,7 @@ describe('typeing judgements', () => {
     })
     test('missing-target', () => {
       expect(
-        index.isRequestId({
+        duis.isRequestId({
           originatorId: 'string',
           counter: 0,
         })
@@ -326,7 +327,7 @@ describe('typeing judgements', () => {
     })
     test('missing-counter', () => {
       expect(
-        index.isRequestId({
+        duis.isRequestId({
           originatorId: 'string',
           targetId: 'string',
         })
@@ -335,7 +336,7 @@ describe('typeing judgements', () => {
 
     test('wrong-counter-type', () => {
       expect(
-        index.isRequestId({
+        duis.isRequestId({
           originatorId: 'string',
           targetId: 'string',
           counter: '0',
@@ -347,7 +348,7 @@ describe('typeing judgements', () => {
   describe('RequestHeader', () => {
     test('undefined', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           undefined,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
@@ -356,7 +357,7 @@ describe('typeing judgements', () => {
     })
     test('null', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           null,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
@@ -365,7 +366,7 @@ describe('typeing judgements', () => {
     })
     test('list', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           [],
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
@@ -374,7 +375,7 @@ describe('typeing judgements', () => {
     })
     test('number', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           5,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
@@ -383,7 +384,7 @@ describe('typeing judgements', () => {
     })
     test('string', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           '',
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
@@ -392,7 +393,7 @@ describe('typeing judgements', () => {
     })
     test('empty', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           {},
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
@@ -402,7 +403,7 @@ describe('typeing judgements', () => {
 
     test('nominal', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           {
             type: 'request',
             commandVariant: cv.lookupCV(1),
@@ -422,7 +423,7 @@ describe('typeing judgements', () => {
 
     test('wrong-type', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           {
             type: 'response',
             commandVariant: cv.lookupCV(1),
@@ -442,7 +443,7 @@ describe('typeing judgements', () => {
 
     test('missing-type', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           {
             commandVariant: cv.lookupCV(1),
             requestId: {
@@ -461,7 +462,7 @@ describe('typeing judgements', () => {
 
     test('missing-requestid', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           {
             type: 'request',
             commandVariant: cv.lookupCV(1),
@@ -476,7 +477,7 @@ describe('typeing judgements', () => {
 
     test('missing-commandVariant', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           {
             type: 'request',
             requestId: {
@@ -495,7 +496,7 @@ describe('typeing judgements', () => {
 
     test('missing-serviceReference', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           {
             type: 'request',
             commandVariant: cv.lookupCV(1),
@@ -514,7 +515,7 @@ describe('typeing judgements', () => {
 
     test('missing-serviceReferenceVariant', () => {
       expect(
-        index.isRequestHeader(
+        duis.isRequestHeader(
           {
             type: 'request',
             commandVariant: cv.lookupCV(1),
@@ -534,27 +535,27 @@ describe('typeing judgements', () => {
 
   describe('ResponseHeader', () => {
     test('undefined', () => {
-      expect(index.isResponseHeader(undefined)).toBeFalsy()
+      expect(duis.isResponseHeader(undefined)).toBeFalsy()
     })
     test('null', () => {
-      expect(index.isResponseHeader(null)).toBeFalsy()
+      expect(duis.isResponseHeader(null)).toBeFalsy()
     })
     test('list', () => {
-      expect(index.isResponseHeader([])).toBeFalsy()
+      expect(duis.isResponseHeader([])).toBeFalsy()
     })
     test('number', () => {
-      expect(index.isResponseHeader(5)).toBeFalsy()
+      expect(duis.isResponseHeader(5)).toBeFalsy()
     })
     test('string', () => {
-      expect(index.isResponseHeader('')).toBeFalsy()
+      expect(duis.isResponseHeader('')).toBeFalsy()
     })
     test('empty', () => {
-      expect(index.isResponseHeader({})).toBeFalsy()
+      expect(duis.isResponseHeader({})).toBeFalsy()
     })
 
     test('nominal', () => {
       expect(
-        index.isResponseHeader({
+        duis.isResponseHeader({
           type: 'response',
           requestId: {
             originatorId: 'string',
@@ -574,7 +575,7 @@ describe('typeing judgements', () => {
 
     test('optional-requestId', () => {
       expect(
-        index.isResponseHeader({
+        duis.isResponseHeader({
           type: 'response',
           responseId: {
             originatorId: 'string',
@@ -589,7 +590,7 @@ describe('typeing judgements', () => {
 
     test('optional-responseId', () => {
       expect(
-        index.isResponseHeader({
+        duis.isResponseHeader({
           type: 'response',
           requestId: {
             originatorId: 'string',
@@ -604,7 +605,7 @@ describe('typeing judgements', () => {
 
     test('wrong-type', () => {
       expect(
-        index.isResponseHeader({
+        duis.isResponseHeader({
           type: 'request',
           requestId: {
             originatorId: 'string',
@@ -624,7 +625,7 @@ describe('typeing judgements', () => {
 
     test('wrong-requestId', () => {
       expect(
-        index.isResponseHeader({
+        duis.isResponseHeader({
           type: 'response',
           requestId: {
             originatorId: 'string',
@@ -644,7 +645,7 @@ describe('typeing judgements', () => {
 
     test('wrong-responseId', () => {
       expect(
-        index.isResponseHeader({
+        duis.isResponseHeader({
           type: 'response',
           requestId: {
             originatorId: 'string',
@@ -660,7 +661,7 @@ describe('typeing judgements', () => {
 
     test('missing-responseCode', () => {
       expect(
-        index.isResponseHeader({
+        duis.isResponseHeader({
           type: 'response',
           requestId: {
             originatorId: 'string',
@@ -679,7 +680,7 @@ describe('typeing judgements', () => {
 
     test('missing-responseDateTime', () => {
       expect(
-        index.isResponseHeader({
+        duis.isResponseHeader({
           type: 'response',
           requestId: {
             originatorId: 'string',
@@ -791,62 +792,68 @@ describe('typeing judgements', () => {
   describe('SimplifiedDuis', () => {
     test('undefined', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           undefined,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
     test('null', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           null,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
     test('list', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           [],
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
     test('number', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           5,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
     test('string', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           '',
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
     test('empty', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           {},
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
 
     test('nominal-request', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           {
             header: {
               type: 'request',
@@ -862,56 +869,65 @@ describe('typeing judgements', () => {
             body: { a: 'c' },
           },
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeTruthy()
     })
 
     test('nominal-response', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           {
             header: {
               type: 'response',
               responseCode: 'string',
               responseDateTime: 'string',
             },
-            body: { a: 'c' },
+            body: {
+              ResponseMessage: {
+                ServiceReference: '1.2',
+                ServiceReferenceVariant: '1.2',
+              },
+            },
           },
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeTruthy()
     })
 
     test('empty-header', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           {
             header: {},
             body: { a: 'c' },
           },
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
 
     test('missing-header', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           {
             body: { a: 'c' },
           },
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
 
     test('missing-body', () => {
       expect(
-        index.isSimplifiedDuis(
+        duis.isSimplifiedDuis(
           {
             header: {
               type: 'response',
@@ -930,7 +946,8 @@ describe('typeing judgements', () => {
             },
           },
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
+          srv.isServiceReferenceVariant,
+          duis.isSimplifiedDuisResponseBody
         )
       ).toBeFalsy()
     })
@@ -938,27 +955,27 @@ describe('typeing judgements', () => {
 
   describe('SimplifiedDuisOutput', () => {
     test('undefined', () => {
-      expect(index.isSimplifiedDuisOutput(undefined)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutput(undefined)).toBeFalsy()
     })
     test('null', () => {
-      expect(index.isSimplifiedDuisOutput(null)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutput(null)).toBeFalsy()
     })
     test('list', () => {
-      expect(index.isSimplifiedDuisOutput([])).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutput([])).toBeFalsy()
     })
     test('number', () => {
-      expect(index.isSimplifiedDuisOutput(5)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutput(5)).toBeFalsy()
     })
     test('string', () => {
-      expect(index.isSimplifiedDuisOutput('')).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutput('')).toBeFalsy()
     })
     test('empty', () => {
-      expect(index.isSimplifiedDuisOutput({})).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutput({})).toBeFalsy()
     })
 
     test('nominal', () => {
       expect(
-        index.isSimplifiedDuisOutput({
+        duis.isSimplifiedDuisOutput({
           header: {
             type: 'request',
             commandVariant: cv.lookupCV(1),
@@ -977,7 +994,7 @@ describe('typeing judgements', () => {
 
     test('wrong-commandVariant', () => {
       expect(
-        index.isSimplifiedDuisOutput({
+        duis.isSimplifiedDuisOutput({
           header: {
             type: 'request',
             commandVariant: 1,
@@ -997,27 +1014,27 @@ describe('typeing judgements', () => {
 
   describe('SimplifiedDuisOutputRequest', () => {
     test('undefined', () => {
-      expect(index.isSimplifiedDuisOutputRequest(undefined)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputRequest(undefined)).toBeFalsy()
     })
     test('null', () => {
-      expect(index.isSimplifiedDuisOutputRequest(null)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputRequest(null)).toBeFalsy()
     })
     test('list', () => {
-      expect(index.isSimplifiedDuisOutputRequest([])).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputRequest([])).toBeFalsy()
     })
     test('number', () => {
-      expect(index.isSimplifiedDuisOutputRequest(5)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputRequest(5)).toBeFalsy()
     })
     test('string', () => {
-      expect(index.isSimplifiedDuisOutputRequest('')).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputRequest('')).toBeFalsy()
     })
     test('empty', () => {
-      expect(index.isSimplifiedDuisOutputRequest({})).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputRequest({})).toBeFalsy()
     })
 
     test('nominal-success', () => {
       expect(
-        index.isSimplifiedDuisOutputRequest({
+        duis.isSimplifiedDuisOutputRequest({
           header: {
             type: 'request',
             commandVariant: cv.lookupCV(1),
@@ -1036,7 +1053,7 @@ describe('typeing judgements', () => {
 
     test('nominal-fail', () => {
       expect(
-        index.isSimplifiedDuisOutputRequest({
+        duis.isSimplifiedDuisOutputRequest({
           header: {
             type: 'response',
             responseId: {
@@ -1055,27 +1072,27 @@ describe('typeing judgements', () => {
 
   describe('SimplifiedDuisOutputResponse', () => {
     test('undefined', () => {
-      expect(index.isSimplifiedDuisOutputResponse(undefined)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputResponse(undefined)).toBeFalsy()
     })
     test('null', () => {
-      expect(index.isSimplifiedDuisOutputResponse(null)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputResponse(null)).toBeFalsy()
     })
     test('list', () => {
-      expect(index.isSimplifiedDuisOutputResponse([])).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputResponse([])).toBeFalsy()
     })
     test('number', () => {
-      expect(index.isSimplifiedDuisOutputResponse(5)).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputResponse(5)).toBeFalsy()
     })
     test('string', () => {
-      expect(index.isSimplifiedDuisOutputResponse('')).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputResponse('')).toBeFalsy()
     })
     test('empty', () => {
-      expect(index.isSimplifiedDuisOutputResponse({})).toBeFalsy()
+      expect(duis.isSimplifiedDuisOutputResponse({})).toBeFalsy()
     })
 
     test('nominal-success', () => {
       expect(
-        index.isSimplifiedDuisOutputResponse({
+        duis.isSimplifiedDuisOutputResponse({
           header: {
             type: 'response',
             responseId: {
@@ -1086,14 +1103,19 @@ describe('typeing judgements', () => {
             responseCode: 'string',
             responseDateTime: 'string',
           },
-          body: { a: 'c' },
+          body: {
+            ResponseMessage: {
+              ServiceReference: '1.2',
+              ServiceReferenceVariant: '1.2',
+            },
+          },
         })
       ).toBeTruthy()
     })
 
     test('nominal-fail', () => {
       expect(
-        index.isSimplifiedDuisOutputResponse({
+        duis.isSimplifiedDuisOutputResponse({
           header: {
             type: 'request',
             commandVariant: cv.lookupCV(1),
@@ -1113,27 +1135,27 @@ describe('typeing judgements', () => {
 
   describe('SimplifiedDuisInput', () => {
     test('undefined', () => {
-      expect(index.isSimplifiedDuisInput(undefined)).toBeFalsy()
+      expect(duis.isSimplifiedDuisInput(undefined)).toBeFalsy()
     })
     test('null', () => {
-      expect(index.isSimplifiedDuisInput(null)).toBeFalsy()
+      expect(duis.isSimplifiedDuisInput(null)).toBeFalsy()
     })
     test('list', () => {
-      expect(index.isSimplifiedDuisInput([])).toBeFalsy()
+      expect(duis.isSimplifiedDuisInput([])).toBeFalsy()
     })
     test('number', () => {
-      expect(index.isSimplifiedDuisInput(5)).toBeFalsy()
+      expect(duis.isSimplifiedDuisInput(5)).toBeFalsy()
     })
     test('string', () => {
-      expect(index.isSimplifiedDuisInput('')).toBeFalsy()
+      expect(duis.isSimplifiedDuisInput('')).toBeFalsy()
     })
     test('empty', () => {
-      expect(index.isSimplifiedDuisInput({})).toBeFalsy()
+      expect(duis.isSimplifiedDuisInput({})).toBeFalsy()
     })
 
     test('nominal-commandVariant-struct', () => {
       expect(
-        index.isSimplifiedDuisInput({
+        duis.isSimplifiedDuisInput({
           header: {
             type: 'request',
             commandVariant: cv.lookupCV(1),
@@ -1152,7 +1174,7 @@ describe('typeing judgements', () => {
 
     test('nominal-commandVariant-number', () => {
       expect(
-        index.isSimplifiedDuisInput({
+        duis.isSimplifiedDuisInput({
           header: {
             type: 'request',
             commandVariant: 1,
@@ -1171,7 +1193,7 @@ describe('typeing judgements', () => {
 
     test('nominal-serviceReferenceVariant-struct', () => {
       expect(
-        index.isSimplifiedDuisInput({
+        duis.isSimplifiedDuisInput({
           header: {
             type: 'request',
             commandVariant: 1,
@@ -1190,7 +1212,7 @@ describe('typeing judgements', () => {
 
     test('wrong-commandVariant-type', () => {
       expect(
-        index.isSimplifiedDuisInput({
+        duis.isSimplifiedDuisInput({
           header: {
             type: 'request',
             commandVariant: '1',
@@ -1221,7 +1243,7 @@ describe('typeing judgements', () => {
         [9, false],
       ].forEach((l) => {
         expect(
-          index.isSimplifiedDuisInput({
+          duis.isSimplifiedDuisInput({
             header: {
               type: 'request',
               commandVariant: l[0],

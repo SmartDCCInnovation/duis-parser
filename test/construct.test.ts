@@ -133,13 +133,14 @@ describe('constructDuis/simple', () => {
         },
         body: {
           ResponseMessage: {
+            ServiceReference: '11.2',
             ServiceReferenceVariant: '11.2',
           },
         },
       }
       /* below string passes xsd validation (ignoring missing xmldsig) */
       expect(parser.constructDuis('simplified', x)).toBe(
-        '<?xml version="1.0" encoding="UTF-8"?><sr:Response xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:ResponseCode>E65</sr:ResponseCode><sr:ResponseDateTime>2022-07-22T09:37:56.134Z</sr:ResponseDateTime><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID></sr:Header><sr:Body><sr:ResponseMessage><sr:ServiceReferenceVariant>11.2</sr:ServiceReferenceVariant></sr:ResponseMessage></sr:Body></sr:Response>'
+        '<?xml version="1.0" encoding="UTF-8"?><sr:Response xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:ResponseCode>E65</sr:ResponseCode><sr:ResponseDateTime>2022-07-22T09:37:56.134Z</sr:ResponseDateTime><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID></sr:Header><sr:Body><sr:ResponseMessage><sr:ServiceReference>11.2</sr:ServiceReference><sr:ServiceReferenceVariant>11.2</sr:ServiceReferenceVariant></sr:ResponseMessage></sr:Body></sr:Response>'
       )
     })
 
@@ -157,6 +158,7 @@ describe('constructDuis/simple', () => {
         },
         body: {
           ResponseMessage: {
+            ServiceReference: '11.2',
             ServiceReferenceVariant: '11.2',
           },
         },
@@ -180,6 +182,7 @@ describe('constructDuis/simple', () => {
         },
         body: {
           ResponseMessage: {
+            ServiceReference: '11.2',
             ServiceReferenceVariant: '11.2',
           },
         },
