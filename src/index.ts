@@ -28,11 +28,18 @@ import {
 } from './duis'
 import { lookupSRV } from './srv'
 import { addPrefixToObject } from './util'
-export { CommandVariant, lookupCV } from './cv'
-export { ServiceReferenceVariant, lookupSRV } from './srv'
+export { CommandVariant, lookupCV, isCommandVariant } from './cv'
 export {
+  ServiceReferenceVariant,
+  lookupSRV,
+  isServiceReferenceVariant,
+} from './srv'
+export {
+  RequestId,
   SimplifiedDuisInput,
   SimplifiedDuisOutput,
+  SimplifiedDuisOutputRequest,
+  SimplifiedDuisOutputResponse,
   XMLData,
   isSimplifiedDuisInput,
   isSimplifiedDuisOutput,
