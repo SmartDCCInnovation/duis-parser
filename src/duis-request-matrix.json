@@ -1,1859 +1,1421 @@
 [
-    {
-        "Service Request Name": "Update Import Tariff (Primary Element)",
-        "Service Reference": "1.1",
-        "Service Reference Variant": "1.1.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Import Tariff (Secondary Element)",
-        "Service Reference": "1.1",
-        "Service Reference Variant": "1.1.2",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Price (Primary Element)",
-        "Service Reference": "1.2",
-        "Service Reference Variant": "1.2.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Price (Secondary Element)",
-        "Service Reference": "1.2",
-        "Service Reference Variant": "1.2.2",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Meter Balance",
-        "Service Reference": "1.5",
-        "Service Reference Variant": "1.5",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Payment Mode",
-        "Service Reference": "1.6",
-        "Service Reference Variant": "1.6",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Reset Tariff Block Counter Matrix",
-        "Service Reference": "1.7",
-        "Service Reference Variant": "1.7",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Prepay Configuration",
-        "Service Reference": "2.1",
-        "Service Reference Variant": "2.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Top Up Device",
-        "Service Reference": "2.2",
-        "Service Reference Variant": "2.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Debt",
-        "Service Reference": "2.3",
-        "Service Reference Variant": "2.3",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Activate Emergency Credit",
-        "Service Reference": "2.5",
-        "Service Reference Variant": "2.5",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Display Message",
-        "Service Reference": "3.1",
-        "Service Reference Variant": "3.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Restrict Access For Change Of Tenancy",
-        "Service Reference": "3.2",
-        "Service Reference Variant": "3.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Clear Event Log",
-        "Service Reference": "3.3",
-        "Service Reference Variant": "3.3",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Supplier Name",
-        "Service Reference": "3.4",
-        "Service Reference Variant": "3.4",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Disable Privacy PIN",
-        "Service Reference": "3.5",
-        "Service Reference Variant": "3.5",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Instantaneous Import Registers",
-        "Service Reference": "4.1",
-        "Service Reference Variant": "4.1.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED",
-            "GT"
-        ]
-    },
-    {
-        "Service Request Name": "Read Instantaneous Import TOU Matrices",
-        "Service Reference": "4.1",
-        "Service Reference Variant": "4.1.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED",
-            "GT"
-        ]
-    },
-    {
-        "Service Request Name": "Read Instantaneous Import TOU With Blocks Matrices",
-        "Service Reference": "4.1",
-        "Service Reference Variant": "4.1.3",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Read Instantaneous Import Block Counters",
-        "Service Reference": "4.1",
-        "Service Reference Variant": "4.1.4",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Instantaneous Export Registers",
-        "Service Reference": "4.2",
-        "Service Reference Variant": "4.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ES",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Read Instantaneous Prepay Values",
-        "Service Reference": "4.3",
-        "Service Reference Variant": "4.3",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Change Of Mode / Tariff Triggered Billing Data Log",
-        "Service Reference": "4.4",
-        "Service Reference Variant": "4.4.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Billing Calendar Triggered Billing Data Log",
-        "Service Reference": "4.4",
-        "Service Reference Variant": "4.4.3",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Billing Data Log (Payment Based Debt Payments)",
-        "Service Reference": "4.4",
-        "Service Reference Variant": "4.4.4",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "GS",
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Billing Data Log (Prepayment Credits)",
-        "Service Reference": "4.4",
-        "Service Reference Variant": "4.4.5",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "GS",
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Import Daily Read Log",
-        "Service Reference": "4.6",
-        "Service Reference Variant": "4.6.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Export Daily Read Log",
-        "Service Reference": "4.6",
-        "Service Reference Variant": "4.6.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ES"
-        ]
-    },
-    {
-        "Service Request Name": "Read Active Import Profile Data",
-        "Service Reference": "4.8",
-        "Service Reference Variant": "4.8.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Reactive Import Profile Data",
-        "Service Reference": "4.8",
-        "Service Reference Variant": "4.8.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ED",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Export Profile Data",
-        "Service Reference": "4.8",
-        "Service Reference Variant": "4.8.3",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ES",
-            "ED",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Network Data",
-        "Service Reference": "4.10",
-        "Service Reference Variant": "4.10",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED",
-            "GT"
-        ]
-    },
-    {
-        "Service Request Name": "Read Tariff (Primary Element)",
-        "Service Reference": "4.11",
-        "Service Reference Variant": "4.11.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Tariff (Secondary Element)",
-        "Service Reference": "4.11",
-        "Service Reference Variant": "4.11.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Maximum Demand Import Registers",
-        "Service Reference": "4.12",
-        "Service Reference Variant": "4.12.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Read Maximum Demand Export Registers",
-        "Service Reference": "4.12",
-        "Service Reference Variant": "4.12.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ES",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Read Prepayment Configuration",
-        "Service Reference": "4.13",
-        "Service Reference Variant": "4.13",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Prepayment Daily Read Log",
-        "Service Reference": "4.14",
-        "Service Reference Variant": "4.14",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Load Limit Data",
-        "Service Reference": "4.15",
-        "Service Reference Variant": "4.15",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Read Active Power Import",
-        "Service Reference": "4.16",
-        "Service Reference Variant": "4.16",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Daily Consumption Log",
-        "Service Reference": "4.17",
-        "Service Reference Variant": "4.17",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Meter Balance",
-        "Service Reference": "4.18",
-        "Service Reference Variant": "4.18",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Create Schedule",
-        "Service Reference": "5.1",
-        "Service Reference Variant": "5.1",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Schedule",
-        "Service Reference": "5.2",
-        "Service Reference Variant": "5.2",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Delete Schedule",
-        "Service Reference": "5.3",
-        "Service Reference Variant": "5.3",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (Voltage)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "RSA",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (Randomisation)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "RSA",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (Billing Calendar)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.3",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "RSA",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (Identity Exc MPxN)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.4",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "RSA",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (Instantaneous Power Thresholds)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.5",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "RSA"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (MPxN)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.7",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "RSA",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (Gas)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.8",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "GS",
-            "RSA",
-            "GT"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (Payment Mode)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.9",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "RSA"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Configuration (Event and Alert Behaviours)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.2.10",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Load Limiting General Settings)",
-        "Service Reference": "6.4",
-        "Service Reference Variant": "6.4.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Load Limiting Counter Reset)",
-        "Service Reference": "6.4",
-        "Service Reference Variant": "6.4.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Voltage)",
-        "Service Reference": "6.5",
-        "Service Reference Variant": "6.5",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Gas Conversion)",
-        "Service Reference": "6.6",
-        "Service Reference Variant": "6.6",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Gas Flow)",
-        "Service Reference": "6.7",
-        "Service Reference Variant": "6.7",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Billing Calendar)",
-        "Service Reference": "6.8",
-        "Service Reference Variant": "6.8",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Synchronise Clock",
-        "Service Reference": "6.11",
-        "Service Reference Variant": "6.11",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Instantaneous Power Threshold)",
-        "Service Reference": "6.12",
-        "Service Reference Variant": "6.12",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Event Or Security Log",
-        "Service Reference": "6.13",
-        "Service Reference Variant": "6.13",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED",
-            "GT",
-            "RSA"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Auxiliary Load Control Description)",
-        "Service Reference": "6.14",
-        "Service Reference Variant": "6.14.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Auxiliary Load Control Scheduler)",
-        "Service Reference": "6.14",
-        "Service Reference Variant": "6.14.2",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (Auxiliary Controller Scheduler)",
-        "Service Reference": "6.14",
-        "Service Reference Variant": "6.14.3",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Security Credentials (KRP)",
-        "Service Reference": "6.15",
-        "Service Reference Variant": "6.15.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED",
-            "GT"
-        ]
-    },
-    {
-        "Service Request Name": "Update Security Credentials (Device)",
-        "Service Reference": "6.15",
-        "Service Reference Variant": "6.15.2",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Issue Security Credentials",
-        "Service Reference": "6.17",
-        "Service Reference Variant": "6.17",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Set Maximum Demand Configurable Time Period",
-        "Service Reference": "6.18",
-        "Service Reference Variant": "6.18.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Reset Maximum Demand Registers",
-        "Service Reference": "6.18",
-        "Service Reference Variant": "6.18.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Set Device Configuration (Import MPxN)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.20.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Set Device Configuration (Export MPAN)",
-        "Service Reference": "6.2",
-        "Service Reference Variant": "6.20.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ES"
-        ]
-    },
-    {
-        "Service Request Name": "Request Handover Of DCC Controlled Device",
-        "Service Reference": "6.21",
-        "Service Reference Variant": "6.21",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Configure Alert Behaviour",
-        "Service Reference": "6.22",
-        "Service Reference Variant": "6.22",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Update Security Credentials (CoS)",
-        "Service Reference": "6.23",
-        "Service Reference Variant": "6.23",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP & Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Device Security Credentials (KRP)",
-        "Service Reference": "6.24",
-        "Service Reference Variant": "6.24.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "ED",
-            "GT"
-        ]
-    },
-    {
-        "Service Request Name": "Retrieve Device Security Credentials (Device)",
-        "Service Reference": "6.24",
-        "Service Reference Variant": "6.24.2",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Set Electricity Supply Tamper State",
-        "Service Reference": "6.25",
-        "Service Reference Variant": "6.25",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (daily resetting of Tariff Block Counter Matrix)",
-        "Service Reference": "6.26",
-        "Service Reference Variant": "6.26",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Device Configuration (RMS Voltage Counter Reset)",
-        "Service Reference": "6.27",
-        "Service Reference Variant": "6.27",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "ED"
-        ]
-    },
-    {
-        "Service Request Name": "Set CHF Sub GHz Configuration",
-        "Service Reference": "6.28",
-        "Service Reference Variant": "6.28",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Request CHF Sub GHz Channel Scan",
-        "Service Reference": "6.29",
-        "Service Reference Variant": "6.29",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read CHF Sub GHz Configuration",
-        "Service Reference": "6.30",
-        "Service Reference Variant": "6.30",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "RSA"
-        ]
-    },
-    {
-        "Service Request Name": "Read CHF Sub GHz Channel",
-        "Service Reference": "6.31",
-        "Service Reference Variant": "6.31",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "RSA"
-        ]
-    },
-    {
-        "Service Request Name": "Read CHF Sub GHz Channel Log",
-        "Service Reference": "6.32",
-        "Service Reference Variant": "6.32",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "RSA"
-        ]
-    },
-    {
-        "Service Request Name": "Enable Supply",
-        "Service Reference": "7.1",
-        "Service Reference Variant": "7.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Disable Supply",
-        "Service Reference": "7.2",
-        "Service Reference Variant": "7.2",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Arm Supply",
-        "Service Reference": "7.3",
-        "Service Reference Variant": "7.3",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Supply Status",
-        "Service Reference": "7.4",
-        "Service Reference Variant": "7.4",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "RSA",
-            "ED",
-            "GT"
-        ]
-    },
-    {
-        "Service Request Name": "Activate Auxiliary Load",
-        "Service Reference": "7.5",
-        "Service Reference Variant": "7.5",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Deactivate Auxiliary Load",
-        "Service Reference": "7.6",
-        "Service Reference Variant": "7.6",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Auxiliary Load Switch Data",
-        "Service Reference": "7.7",
-        "Service Reference Variant": "7.7",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ED",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Reset Auxiliary Load",
-        "Service Reference": "7.8",
-        "Service Reference Variant": "7.8",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Add Auxiliary Load To Boost Button",
-        "Service Reference": "7.9",
-        "Service Reference Variant": "7.9",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Remove Auxiliary Load From Boost Button",
-        "Service Reference": "7.10",
-        "Service Reference Variant": "7.10",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Boost Button Details",
-        "Service Reference": "7.11",
-        "Service Reference Variant": "7.11",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Set Randomised Offset Limit",
-        "Service Reference": "7.12",
-        "Service Reference Variant": "7.12",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Set Auxiliary Controller State",
-        "Service Reference": "7.13",
-        "Service Reference Variant": "7.13",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Auxiliary Controller Configuration Data",
-        "Service Reference": "7.14",
-        "Service Reference Variant": "7.14",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ED",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Auxiliary Controller Operational Data",
-        "Service Reference": "7.15",
-        "Service Reference Variant": "7.15",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ED",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Limit APC Level",
-        "Service Reference": "7.16",
-        "Service Reference Variant": "7.16",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": []
-    },
-    {
-        "Service Request Name": "Commission Device",
-        "Service Reference": "8.1",
-        "Service Reference Variant": "8.1.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Inventory \n\n(Current and Future Suppliers may use this Service Request)",
-        "Service Reference": "8.2",
-        "Service Reference Variant": "8.2",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "RSA",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Decommission Device",
-        "Service Reference": "8.3",
-        "Service Reference Variant": "8.3",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update Inventory",
-        "Service Reference": "8.4",
-        "Service Reference Variant": "8.4",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "RSA",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Service Opt Out",
-        "Service Reference": "8.5",
-        "Service Reference Variant": "8.5",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": []
-    },
-    {
-        "Service Request Name": "Service Opt In",
-        "Service Reference": "8.6",
-        "Service Reference Variant": "8.6",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": []
-    },
-    {
-        "Service Request Name": "Join Service (Critical)",
-        "Service Reference": "8.7",
-        "Service Reference Variant": "8.7.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Join Service (Non-Critical)",
-        "Service Reference": "8.7",
-        "Service Reference Variant": "8.7.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Unjoin Service (Critical)",
-        "Service Reference": "8.8",
-        "Service Reference Variant": "8.8.1",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Unjoin Service (Non-Critical)",
-        "Service Reference": "8.8",
-        "Service Reference Variant": "8.8.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Read Device Log",
-        "Service Reference": "8.9",
-        "Service Reference Variant": "8.9",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Update HAN Device Log",
-        "Service Reference": "8.11",
-        "Service Reference Variant": "8.11",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Restore HAN Device Log",
-        "Service Reference": "8.12",
-        "Service Reference Variant": "8.12.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Restore Gas Proxy Function Device Log",
-        "Service Reference": "8.12",
-        "Service Reference Variant": "8.12.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Return Local Command Response",
-        "Service Reference": "8.13",
-        "Service Reference Variant": "8.13",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Communications Hub Status Update- Install Success",
-        "Service Reference": "8.14",
-        "Service Reference Variant": "8.14.1",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Communications Hub Status Update - Install No SM WAN",
-        "Service Reference": "8.14",
-        "Service Reference Variant": "8.14.2",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Communications Hub  Status Update. \u2013 Fault Return",
-        "Service Reference": "8.14",
-        "Service Reference Variant": "8.14.3",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Communications Hub Status Update \u2013 No Fault Return",
-        "Service Reference": "8.14",
-        "Service Reference Variant": "8.14.4",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Request Customer Identification Number",
-        "Service Reference": "9.1",
-        "Service Reference Variant": "9.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Update Firmware",
-        "Service Reference": "11.1",
-        "Service Reference Variant": "11.1",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Read Firmware Version",
-        "Service Reference": "11.2",
-        "Service Reference Variant": "11.2",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "DSP",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "RSA",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Activate Firmware",
-        "Service Reference": "11.3",
-        "Service Reference Variant": "11.3",
-        "Critical": "Yes",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "Device",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Update PPMID Firmware",
-        "Service Reference": "11.4",
-        "Service Reference Variant": "11.4",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "GS"
-        ]
-    },
-    {
-        "Service Request Name": "Request WAN Matrix",
-        "Service Reference": "12.1",
-        "Service Reference Variant": "12.1",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "RSA",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Device Pre-notification",
-        "Service Reference": "12.2",
-        "Service Reference Variant": "12.2",
-        "Critical": "No",
-        "On Demand": "No",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "No",
-        "Non-Device Request": "Yes",
-        "Eligible User Roles": [
-            "IS",
-            "ES",
-            "GS",
-            "RSA",
-            "ED",
-            "GT",
-            "OU"
-        ]
-    },
-    {
-        "Service Request Name": "Record Network Data (GAS)",
-        "Service Reference": "14.1",
-        "Service Reference Variant": "14.1",
-        "Critical": "No",
-        "On Demand": "Yes",
-        "Future Dated Response Pattern": "No",
-        "DCC Scheduled": "Yes",
-        "Non-Device Request": "No",
-        "Eligible User Roles": [
-            "GT"
-        ]
-    }
+  {
+    "Service Request Name": "Update Import Tariff (Primary Element)",
+    "Service Reference": "1.1",
+    "Service Reference Variant": "1.1.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Update Import Tariff (Secondary Element)",
+    "Service Reference": "1.1",
+    "Service Reference Variant": "1.1.2",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Price (Primary Element)",
+    "Service Reference": "1.2",
+    "Service Reference Variant": "1.2.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Update Price (Secondary Element)",
+    "Service Reference": "1.2",
+    "Service Reference Variant": "1.2.2",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Meter Balance",
+    "Service Reference": "1.5",
+    "Service Reference Variant": "1.5",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Update Payment Mode",
+    "Service Reference": "1.6",
+    "Service Reference Variant": "1.6",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Reset Tariff Block Counter Matrix",
+    "Service Reference": "1.7",
+    "Service Reference Variant": "1.7",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Prepay Configuration",
+    "Service Reference": "2.1",
+    "Service Reference Variant": "2.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Top Up Device",
+    "Service Reference": "2.2",
+    "Service Reference Variant": "2.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Update Debt",
+    "Service Reference": "2.3",
+    "Service Reference Variant": "2.3",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Activate Emergency Credit",
+    "Service Reference": "2.5",
+    "Service Reference Variant": "2.5",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Display Message",
+    "Service Reference": "3.1",
+    "Service Reference Variant": "3.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Restrict Access For Change Of Tenancy",
+    "Service Reference": "3.2",
+    "Service Reference Variant": "3.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Clear Event Log",
+    "Service Reference": "3.3",
+    "Service Reference Variant": "3.3",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Update Supplier Name",
+    "Service Reference": "3.4",
+    "Service Reference Variant": "3.4",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Disable Privacy PIN",
+    "Service Reference": "3.5",
+    "Service Reference Variant": "3.5",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Read Instantaneous Import Registers",
+    "Service Reference": "4.1",
+    "Service Reference Variant": "4.1.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED", "GT"]
+  },
+  {
+    "Service Request Name": "Read Instantaneous Import TOU Matrices",
+    "Service Reference": "4.1",
+    "Service Reference Variant": "4.1.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED", "GT"]
+  },
+  {
+    "Service Request Name": "Read Instantaneous Import TOU With Blocks Matrices",
+    "Service Reference": "4.1",
+    "Service Reference Variant": "4.1.3",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ED"]
+  },
+  {
+    "Service Request Name": "Read Instantaneous Import Block Counters",
+    "Service Reference": "4.1",
+    "Service Reference Variant": "4.1.4",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["GS"]
+  },
+  {
+    "Service Request Name": "Read Instantaneous Export Registers",
+    "Service Reference": "4.2",
+    "Service Reference Variant": "4.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ES", "ED"]
+  },
+  {
+    "Service Request Name": "Read Instantaneous Prepay Values",
+    "Service Reference": "4.3",
+    "Service Reference Variant": "4.3",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Retrieve Change Of Mode / Tariff Triggered Billing Data Log",
+    "Service Reference": "4.4",
+    "Service Reference Variant": "4.4.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Retrieve Billing Calendar Triggered Billing Data Log",
+    "Service Reference": "4.4",
+    "Service Reference Variant": "4.4.3",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Retrieve Billing Data Log (Payment Based Debt Payments)",
+    "Service Reference": "4.4",
+    "Service Reference Variant": "4.4.4",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["GS", "IS"]
+  },
+  {
+    "Service Request Name": "Retrieve Billing Data Log (Prepayment Credits)",
+    "Service Reference": "4.4",
+    "Service Reference Variant": "4.4.5",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["GS", "IS"]
+  },
+  {
+    "Service Request Name": "Retrieve Import Daily Read Log",
+    "Service Reference": "4.6",
+    "Service Reference Variant": "4.6.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Retrieve Export Daily Read Log",
+    "Service Reference": "4.6",
+    "Service Reference Variant": "4.6.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ES"]
+  },
+  {
+    "Service Request Name": "Read Active Import Profile Data",
+    "Service Reference": "4.8",
+    "Service Reference Variant": "4.8.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Read Reactive Import Profile Data",
+    "Service Reference": "4.8",
+    "Service Reference Variant": "4.8.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ED", "OU"]
+  },
+  {
+    "Service Request Name": "Read Export Profile Data",
+    "Service Reference": "4.8",
+    "Service Reference Variant": "4.8.3",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ES", "ED", "OU"]
+  },
+  {
+    "Service Request Name": "Read Network Data",
+    "Service Reference": "4.10",
+    "Service Reference Variant": "4.10",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED", "GT"]
+  },
+  {
+    "Service Request Name": "Read Tariff (Primary Element)",
+    "Service Reference": "4.11",
+    "Service Reference Variant": "4.11.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "OU"]
+  },
+  {
+    "Service Request Name": "Read Tariff (Secondary Element)",
+    "Service Reference": "4.11",
+    "Service Reference Variant": "4.11.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "OU"]
+  },
+  {
+    "Service Request Name": "Read Maximum Demand Import Registers",
+    "Service Reference": "4.12",
+    "Service Reference Variant": "4.12.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ED"]
+  },
+  {
+    "Service Request Name": "Read Maximum Demand Export Registers",
+    "Service Reference": "4.12",
+    "Service Reference Variant": "4.12.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ES", "ED"]
+  },
+  {
+    "Service Request Name": "Read Prepayment Configuration",
+    "Service Reference": "4.13",
+    "Service Reference Variant": "4.13",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Read Prepayment Daily Read Log",
+    "Service Reference": "4.14",
+    "Service Reference Variant": "4.14",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Read Load Limit Data",
+    "Service Reference": "4.15",
+    "Service Reference Variant": "4.15",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ED"]
+  },
+  {
+    "Service Request Name": "Read Active Power Import",
+    "Service Reference": "4.16",
+    "Service Reference Variant": "4.16",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ED"]
+  },
+  {
+    "Service Request Name": "Retrieve Daily Consumption Log",
+    "Service Reference": "4.17",
+    "Service Reference Variant": "4.17",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Read Meter Balance",
+    "Service Reference": "4.18",
+    "Service Reference Variant": "4.18",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Create Schedule",
+    "Service Reference": "5.1",
+    "Service Reference Variant": "5.1",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "ES", "GS", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Read Schedule",
+    "Service Reference": "5.2",
+    "Service Reference Variant": "5.2",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "ES", "GS", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Delete Schedule",
+    "Service Reference": "5.3",
+    "Service Reference Variant": "5.3",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "ES", "GS", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (Voltage)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "RSA", "ED"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (Randomisation)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "RSA", "ED"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (Billing Calendar)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.3",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "RSA", "GS"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (Identity Exc MPxN)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.4",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ES", "GS", "RSA", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (Instantaneous Power Thresholds)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.5",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "RSA"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (MPxN)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.7",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ES", "GS", "RSA", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (Gas)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.8",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["GS", "RSA", "GT"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (Payment Mode)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.9",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "RSA"]
+  },
+  {
+    "Service Request Name": "Read Device Configuration (Event and Alert Behaviours)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.2.10",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Load Limiting General Settings)",
+    "Service Reference": "6.4",
+    "Service Reference Variant": "6.4.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Load Limiting Counter Reset)",
+    "Service Reference": "6.4",
+    "Service Reference Variant": "6.4.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Voltage)",
+    "Service Reference": "6.5",
+    "Service Reference Variant": "6.5",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ED"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Gas Conversion)",
+    "Service Reference": "6.6",
+    "Service Reference Variant": "6.6",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["GS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Gas Flow)",
+    "Service Reference": "6.7",
+    "Service Reference Variant": "6.7",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["GS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Billing Calendar)",
+    "Service Reference": "6.8",
+    "Service Reference Variant": "6.8",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Synchronise Clock",
+    "Service Reference": "6.11",
+    "Service Reference Variant": "6.11",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Instantaneous Power Threshold)",
+    "Service Reference": "6.12",
+    "Service Reference Variant": "6.12",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Read Event Or Security Log",
+    "Service Reference": "6.13",
+    "Service Reference Variant": "6.13",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED", "GT", "RSA"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Auxiliary Load Control Description)",
+    "Service Reference": "6.14",
+    "Service Reference Variant": "6.14.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Auxiliary Load Control Scheduler)",
+    "Service Reference": "6.14",
+    "Service Reference Variant": "6.14.2",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (Auxiliary Controller Scheduler)",
+    "Service Reference": "6.14",
+    "Service Reference Variant": "6.14.3",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Security Credentials (KRP)",
+    "Service Reference": "6.15",
+    "Service Reference Variant": "6.15.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED", "GT"]
+  },
+  {
+    "Service Request Name": "Update Security Credentials (Device)",
+    "Service Reference": "6.15",
+    "Service Reference Variant": "6.15.2",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Issue Security Credentials",
+    "Service Reference": "6.17",
+    "Service Reference Variant": "6.17",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Set Maximum Demand Configurable Time Period",
+    "Service Reference": "6.18",
+    "Service Reference Variant": "6.18.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ED"]
+  },
+  {
+    "Service Request Name": "Reset Maximum Demand Registers",
+    "Service Reference": "6.18",
+    "Service Reference Variant": "6.18.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ED"]
+  },
+  {
+    "Service Request Name": "Set Device Configuration (Import MPxN)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.20.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Set Device Configuration (Export MPAN)",
+    "Service Reference": "6.2",
+    "Service Reference Variant": "6.20.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ES"]
+  },
+  {
+    "Service Request Name": "Request Handover Of DCC Controlled Device",
+    "Service Reference": "6.21",
+    "Service Reference Variant": "6.21",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Configure Alert Behaviour",
+    "Service Reference": "6.22",
+    "Service Reference Variant": "6.22",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED"]
+  },
+  {
+    "Service Request Name": "Update Security Credentials (CoS)",
+    "Service Reference": "6.23",
+    "Service Reference Variant": "6.23",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP & Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Retrieve Device Security Credentials (KRP)",
+    "Service Reference": "6.24",
+    "Service Reference Variant": "6.24.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "ED", "GT"]
+  },
+  {
+    "Service Request Name": "Retrieve Device Security Credentials (Device)",
+    "Service Reference": "6.24",
+    "Service Reference Variant": "6.24.2",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Set Electricity Supply Tamper State",
+    "Service Reference": "6.25",
+    "Service Reference Variant": "6.25",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (daily resetting of Tariff Block Counter Matrix)",
+    "Service Reference": "6.26",
+    "Service Reference Variant": "6.26",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Update Device Configuration (RMS Voltage Counter Reset)",
+    "Service Reference": "6.27",
+    "Service Reference Variant": "6.27",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["ED"]
+  },
+  {
+    "Service Request Name": "Set CHF Sub GHz Configuration",
+    "Service Reference": "6.28",
+    "Service Reference Variant": "6.28",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Request CHF Sub GHz Channel Scan",
+    "Service Reference": "6.29",
+    "Service Reference Variant": "6.29",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Read CHF Sub GHz Configuration",
+    "Service Reference": "6.30",
+    "Service Reference Variant": "6.30",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "RSA"]
+  },
+  {
+    "Service Request Name": "Read CHF Sub GHz Channel",
+    "Service Reference": "6.31",
+    "Service Reference Variant": "6.31",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "RSA"]
+  },
+  {
+    "Service Request Name": "Read CHF Sub GHz Channel Log",
+    "Service Reference": "6.32",
+    "Service Reference Variant": "6.32",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "RSA"]
+  },
+  {
+    "Service Request Name": "Enable Supply",
+    "Service Reference": "7.1",
+    "Service Reference Variant": "7.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Disable Supply",
+    "Service Reference": "7.2",
+    "Service Reference Variant": "7.2",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Arm Supply",
+    "Service Reference": "7.3",
+    "Service Reference Variant": "7.3",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Read Supply Status",
+    "Service Reference": "7.4",
+    "Service Reference Variant": "7.4",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ES", "GS", "RSA", "ED", "GT"]
+  },
+  {
+    "Service Request Name": "Activate Auxiliary Load",
+    "Service Reference": "7.5",
+    "Service Reference Variant": "7.5",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Deactivate Auxiliary Load",
+    "Service Reference": "7.6",
+    "Service Reference Variant": "7.6",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Read Auxiliary Load Switch Data",
+    "Service Reference": "7.7",
+    "Service Reference Variant": "7.7",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ED", "OU"]
+  },
+  {
+    "Service Request Name": "Reset Auxiliary Load",
+    "Service Reference": "7.8",
+    "Service Reference Variant": "7.8",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Add Auxiliary Load To Boost Button",
+    "Service Reference": "7.9",
+    "Service Reference Variant": "7.9",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Remove Auxiliary Load From Boost Button",
+    "Service Reference": "7.10",
+    "Service Reference Variant": "7.10",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Read Boost Button Details",
+    "Service Reference": "7.11",
+    "Service Reference Variant": "7.11",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "OU"]
+  },
+  {
+    "Service Request Name": "Set Randomised Offset Limit",
+    "Service Reference": "7.12",
+    "Service Reference Variant": "7.12",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Set Auxiliary Controller State",
+    "Service Reference": "7.13",
+    "Service Reference Variant": "7.13",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS"]
+  },
+  {
+    "Service Request Name": "Read Auxiliary Controller Configuration Data",
+    "Service Reference": "7.14",
+    "Service Reference Variant": "7.14",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ED", "OU"]
+  },
+  {
+    "Service Request Name": "Read Auxiliary Controller Operational Data",
+    "Service Reference": "7.15",
+    "Service Reference Variant": "7.15",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ED", "OU"]
+  },
+  {
+    "Service Request Name": "Limit APC Level",
+    "Service Reference": "7.16",
+    "Service Reference Variant": "7.16",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": []
+  },
+  {
+    "Service Request Name": "Commission Device",
+    "Service Reference": "8.1",
+    "Service Reference Variant": "8.1.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Read Inventory \n\n(Current and Future Suppliers may use this Service Request)",
+    "Service Reference": "8.2",
+    "Service Reference Variant": "8.2",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "ES", "GS", "RSA", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Decommission Device",
+    "Service Reference": "8.3",
+    "Service Reference Variant": "8.3",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Update Inventory",
+    "Service Reference": "8.4",
+    "Service Reference Variant": "8.4",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "ES", "GS", "RSA", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Service Opt Out",
+    "Service Reference": "8.5",
+    "Service Reference Variant": "8.5",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": []
+  },
+  {
+    "Service Request Name": "Service Opt In",
+    "Service Reference": "8.6",
+    "Service Reference Variant": "8.6",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": []
+  },
+  {
+    "Service Request Name": "Join Service (Critical)",
+    "Service Reference": "8.7",
+    "Service Reference Variant": "8.7.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Join Service (Non-Critical)",
+    "Service Reference": "8.7",
+    "Service Reference Variant": "8.7.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "OU"]
+  },
+  {
+    "Service Request Name": "Unjoin Service (Critical)",
+    "Service Reference": "8.8",
+    "Service Reference Variant": "8.8.1",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Unjoin Service (Non-Critical)",
+    "Service Reference": "8.8",
+    "Service Reference Variant": "8.8.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "OU"]
+  },
+  {
+    "Service Request Name": "Read Device Log",
+    "Service Reference": "8.9",
+    "Service Reference Variant": "8.9",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "OU"]
+  },
+  {
+    "Service Request Name": "Update HAN Device Log",
+    "Service Reference": "8.11",
+    "Service Reference Variant": "8.11",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS", "OU"]
+  },
+  {
+    "Service Request Name": "Restore HAN Device Log",
+    "Service Reference": "8.12",
+    "Service Reference Variant": "8.12.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Restore Gas Proxy Function Device Log",
+    "Service Reference": "8.12",
+    "Service Reference Variant": "8.12.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Return Local Command Response",
+    "Service Reference": "8.13",
+    "Service Reference Variant": "8.13",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Communications Hub Status Update- Install Success",
+    "Service Reference": "8.14",
+    "Service Reference Variant": "8.14.1",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Communications Hub Status Update - Install No SM WAN",
+    "Service Reference": "8.14",
+    "Service Reference Variant": "8.14.2",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Communications Hub  Status Update. \u2013 Fault Return",
+    "Service Reference": "8.14",
+    "Service Reference Variant": "8.14.3",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Communications Hub Status Update \u2013 No Fault Return",
+    "Service Reference": "8.14",
+    "Service Reference Variant": "8.14.4",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Request Customer Identification Number",
+    "Service Reference": "9.1",
+    "Service Reference Variant": "9.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["OU"]
+  },
+  {
+    "Service Request Name": "Update Firmware",
+    "Service Reference": "11.1",
+    "Service Reference Variant": "11.1",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Read Firmware Version",
+    "Service Reference": "11.2",
+    "Service Reference Variant": "11.2",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "DSP",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "ES", "GS", "RSA", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Activate Firmware",
+    "Service Reference": "11.3",
+    "Service Reference Variant": "11.3",
+    "Critical": "Yes",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "Device",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Update PPMID Firmware",
+    "Service Reference": "11.4",
+    "Service Reference Variant": "11.4",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "GS"]
+  },
+  {
+    "Service Request Name": "Request WAN Matrix",
+    "Service Reference": "12.1",
+    "Service Reference Variant": "12.1",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "ES", "GS", "RSA", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Device Pre-notification",
+    "Service Reference": "12.2",
+    "Service Reference Variant": "12.2",
+    "Critical": "No",
+    "On Demand": "No",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "No",
+    "Non-Device Request": "Yes",
+    "Eligible User Roles": ["IS", "ES", "GS", "RSA", "ED", "GT", "OU"]
+  },
+  {
+    "Service Request Name": "Record Network Data (GAS)",
+    "Service Reference": "14.1",
+    "Service Reference Variant": "14.1",
+    "Critical": "No",
+    "On Demand": "Yes",
+    "Future Dated Response Pattern": "No",
+    "DCC Scheduled": "Yes",
+    "Non-Device Request": "No",
+    "Eligible User Roles": ["GT"]
+  }
 ]
