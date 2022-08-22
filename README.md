@@ -194,6 +194,24 @@ because the digital signature and XML namespaces are present.
 }
 ```
 
+## Contributing
+
+Contributions are welcome!
+
+When submitting a pull request, please ensure:
+
+  1. Each PR is concise and provides only one feature/bug fix.
+  2. Unit test are provided to cover feature. The project uses `jest`. To test,
+     run `npm run test:cov` to view code coverage metrics.
+  3. Bugfixes are reference the GitHub issue.
+  4. If appropriate, update documentation.
+  5. Before committing, run `npm run lint` and `npm run prettier-check`.
+
+If you are planning a new non-trivial feature, please first raise a GitHub issue
+to discuss it to before investing your time to avoid disappointment.
+
+Any contributions will be expected to be licensable under GPLv3.
+
 ## Other Info
 
 Copyright 2022, Smart DCC Limited, All rights reserved. Project is licensed under GPLv3.
