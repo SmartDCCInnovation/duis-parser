@@ -22,6 +22,8 @@ import { isServiceReferenceVariant, ServiceReferenceVariant } from './srv'
 
 export interface RequestId {
   originatorId: string
+
+
   targetId: string
   counter: number
 }
