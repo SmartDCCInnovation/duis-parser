@@ -31,10 +31,10 @@ jobs:
         fi
     - name: Run prettier with reviewdog
       uses: EPMatt/reviewdog-action-prettier@v1
-        with:
-          github_token: ${{ secrets.github_token }}
-          reporter: ${{ steps.get-reporter.outputs.reporter }}
-          level: warning
+      with:
+        github_token: ${{ secrets.github_token }}
+        reporter: ${{ steps.get-reporter.outputs.reporter }}
+        level: warning
     - name: Run prettier (catch all)
       if: github.event_name == 'pull_request'
       run: npm run prettier-check
