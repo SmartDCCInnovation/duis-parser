@@ -1,0 +1,103 @@
+name: Validation and Release
+
+on:
+  push:
+    branches:
+      - main
+      - dccboxed-*
+      - validation*
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - main
+      - dccboxed-*
+      - validation
+
+jobs:
+
+  format:
+    name: Check Formatting
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Select reviewdog reporter
+      id: get-reporter
+      run: |
+        if test "${{ github.event_name }}" = "pull_request"; then
+          echo "::set-output name=reporter::github-pr-review"
+        else
+          echo "::set-output name=reporter::github-check"
+        fi
+    - name: Run prettier with reviewdog
+      uses: EPMatt/reviewdog-action-prettier@v1
+        with:
+          github_token: ${{ secrets.github_token }}
+          reporter: ${{ steps.get-reporter.outputs.reporter }}
+          level: warning
+    - name: Run prettier (catch all)
+      if: github.event_name == 'pull_request'
+      run: npm run prettier-check
+
+  lint:
+    name: Check Static Errors
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install reviewdog
+      uses: reviewdog/action-setup@v1
+      with:
+        reviewdog_version: latest
+    - name: Select reviewdog reporter
+      id: get-reporter
+      run: |
+        if test "${{ github.event_name }}" = "pull_request"; then
+          echo "::set-output name=reporter::github-pr-review"
+        else
+          echo "::set-output name=reporter::github-check"
+        fi
+    - name: Set up NodeJS 16
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+    - name: Install dependencies
+      run: npm run ci
+    - name: Run eslint with reviewdog
+      env:
+        REVIEWDOG_GITHUB_API_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: npm run lint | reviewdog -f=eslint -reporter=${{ steps.get-reporter.outputs.reporter }} -fail-on-error 
+    - name: Run prettier (catch all)
+      if: github.event_name == 'pull_request'
+      run: npm run prettier-check
+
+  test:
+    name: Run Tests on NodeJS ${{ matrix.node }}
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node: [ 14, 16, 18 ]
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install reviewdog
+      uses: reviewdog/action-setup@v1
+      with:
+        reviewdog_version: latest
+    - name: Select reviewdog reporter
+      id: get-reporter
+      run: |
+        if test "${{ github.event_name }}" = "pull_request"; then
+          echo "::set-output name=reporter::github-pr-review"
+        else
+          echo "::set-output name=reporter::github-check"
+        fi
+    - name: Set up NodeJS ${{ matrix.node }}
+      uses: actions/setup-node@v3
+      with:
+        node-version: ${{ matrix.node }}
+    - name: Install dependencies
+      run: npm run ci
+    - name: Run tests
+      run: npm run test:cov
+    - name: Upload coverage to Codecov
+      if: matrix.node == '16' && (github.event_name != 'push' || github.ref_type != 'tag' || !startsWith(github.ref_name, 'v'))
+      uses: codecov/codecov-action@v3
