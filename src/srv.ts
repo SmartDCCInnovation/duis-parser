@@ -18,6 +18,10 @@ export function lookupSRV(srv: string): ServiceReferenceVariant | undefined {
   ) as ServiceReferenceVariant
 }
 
+function IAmNotTested() {
+  return 'hello world :('
+}
+
 export function isServiceReferenceVariant(
   o: unknown
 ): o is ServiceReferenceVariant {
