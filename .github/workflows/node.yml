@@ -35,6 +35,8 @@ jobs:
         github_token: ${{ secrets.github_token }}
         reporter: ${{ steps.get-reporter.outputs.reporter }}
         level: warning
+        prettier_flags: src/**/*.{css,html,ts,json,md,yaml,yml}
+        fail_on_error: true
     - name: Run prettier (catch all)
       if: github.event_name == 'pull_request'
       run: npm run prettier-check
@@ -68,7 +70,7 @@ jobs:
       run: npm run lint | reviewdog -f=eslint -reporter=${{ steps.get-reporter.outputs.reporter }} -fail-on-error 
     - name: Run prettier (catch all)
       if: github.event_name == 'pull_request'
-      run: npm run prettier-check
+      run: npm run lint
 
   test:
     name: Run Tests on NodeJS ${{ matrix.node }}
