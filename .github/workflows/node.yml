@@ -31,7 +31,7 @@ jobs:
       with:
         github_token: ${{ secrets.github_token }}
         reporter: ${{ steps.get-reporter.outputs.reporter }}
-        level: warning
+        level: error
         prettier_flags: src/**/*.{css,html,ts,json,md,yaml,yml}
         fail_on_error: true
     - name: Run prettier (catch all)
