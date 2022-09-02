@@ -3,6 +3,7 @@
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![Tests](https://github.com/SmartDCCInnovation/duis-parser/actions/workflows/node.yml/badge.svg?branch=main&event=push)](https://github.com/SmartDCCInnovation/duis-parser/actions/workflows/node.yml)
 [![codecov](https://codecov.io/gh/SmartDCCInnovation/duis-parser/branch/main/graph/badge.svg?token=WC8CIK1CBV)](https://codecov.io/gh/SmartDCCInnovation/duis-parser)
+[![GitHub version](https://badge.fury.io/gh/SmartDCCInnovation%2Fduis-parser.svg)](https://badge.fury.io/gh/SmartDCCInnovation%2Fduis-parser)
 
 Lightweight wrapper around `fast-xml-parser` that converts between JSON and
 [DUIS][duis] formats. This tool has been developed to provide an easy to use
