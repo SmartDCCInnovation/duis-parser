@@ -43,5 +43,13 @@
     "name": "Karim Kanso",
     "email": "Karim.Kanso@smartdcc.co.uk"
   },
-  "license": "GPL-3.0-or-later"
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "duis",
+    "backend",
+    "smartdcc",
+    "smartmeter",
+    "smets2",
+    "xml"
+  ]
 }
