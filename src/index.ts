@@ -37,11 +37,13 @@ export {
 export {
   RequestId,
   SimplifiedDuisInput,
+  SimplifiedDuisInputRequest,
   SimplifiedDuisOutput,
   SimplifiedDuisOutputRequest,
   SimplifiedDuisOutputResponse,
   XMLData,
   isSimplifiedDuisInput,
+  isSimplifiedDuisInputRequest,
   isSimplifiedDuisOutput,
   isSimplifiedDuisOutputRequest,
   isSimplifiedDuisOutputResponse,

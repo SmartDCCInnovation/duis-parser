@@ -256,6 +256,10 @@ export type SimplifiedDuisInput = SimplifiedDuis<
   ServiceReferenceVariant | string,
   SimplifiedDuisResponseBody
 >
+export type SimplifiedDuisInputRequest = SimplifiedDuisRequest<
+  CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+  ServiceReferenceVariant | string
+>
 
 export function isSimplifiedDuisRequest<CV, SRV>(
   o: unknown,
@@ -831,5 +835,22 @@ export function isSimplifiedDuisInput(o: unknown): o is SimplifiedDuisInput {
       return typeof o === 'string' || isServiceReferenceVariant(o)
     },
     isSimplifiedDuisResponseBody
+  )
+}
+
+export function isSimplifiedDuisInputRequest(
+  o: unknown
+): o is SimplifiedDuisInputRequest {
+  return isSimplifiedDuisRequest<
+    CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
+    ServiceReferenceVariant | string
+  >(
+    o,
+    (o: unknown): o is CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 => {
+      return (typeof o === 'number' && o >= 1 && o <= 8) || isCommandVariant(o)
+    },
+    (o: unknown): o is ServiceReferenceVariant | string => {
+      return typeof o === 'string' || isServiceReferenceVariant(o)
+    }
   )
 }

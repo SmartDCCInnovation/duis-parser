@@ -1261,4 +1261,133 @@ describe('typeing judgements', () => {
       })
     })
   })
+
+  describe('SimplifiedDuisInputRequest', () => {
+    test('undefined', () => {
+      expect(duis.isSimplifiedDuisInputRequest(undefined)).toBeFalsy()
+    })
+    test('null', () => {
+      expect(duis.isSimplifiedDuisInputRequest(null)).toBeFalsy()
+    })
+    test('list', () => {
+      expect(duis.isSimplifiedDuisInputRequest([])).toBeFalsy()
+    })
+    test('number', () => {
+      expect(duis.isSimplifiedDuisInputRequest(5)).toBeFalsy()
+    })
+    test('string', () => {
+      expect(duis.isSimplifiedDuisInputRequest('')).toBeFalsy()
+    })
+    test('empty', () => {
+      expect(duis.isSimplifiedDuisInputRequest({})).toBeFalsy()
+    })
+
+    test('nominal-commandVariant-struct', () => {
+      expect(
+        duis.isSimplifiedDuisInputRequest({
+          header: {
+            type: 'request',
+            commandVariant: cv.lookupCV(1),
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: 'string',
+          },
+          body: { a: 'c' },
+        })
+      ).toBeTruthy()
+    })
+
+    test('nominal-commandVariant-number', () => {
+      expect(
+        duis.isSimplifiedDuisInputRequest({
+          header: {
+            type: 'request',
+            commandVariant: 1,
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: 'string',
+          },
+          body: { a: 'c' },
+        })
+      ).toBeTruthy()
+    })
+
+    test('nominal-serviceReferenceVariant-struct', () => {
+      expect(
+        duis.isSimplifiedDuisInputRequest({
+          header: {
+            type: 'request',
+            commandVariant: 1,
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
+          },
+          body: { a: 'c' },
+        })
+      ).toBeTruthy()
+    })
+
+    test('wrong-commandVariant-type', () => {
+      expect(
+        duis.isSimplifiedDuisInputRequest({
+          header: {
+            type: 'request',
+            commandVariant: '1',
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: 'string',
+          },
+          body: { a: 'c' },
+        })
+      ).toBeFalsy()
+    })
+
+    test('commandVariant-range', () => {
+      ;[
+        [0, false],
+        [1, true],
+        [2, true],
+        [3, true],
+        [4, true],
+        [5, true],
+        [6, true],
+        [7, true],
+        [8, true],
+        [9, false],
+      ].forEach((l) => {
+        expect(
+          duis.isSimplifiedDuisInputRequest({
+            header: {
+              type: 'request',
+              commandVariant: l[0],
+              requestId: {
+                originatorId: 'string',
+                targetId: 'string',
+                counter: 0,
+              },
+              serviceReference: 'string',
+              serviceReferenceVariant: 'string',
+            },
+            body: { a: 'c' },
+          })
+        ).toBe(l[1])
+      })
+    })
+  })
 })
