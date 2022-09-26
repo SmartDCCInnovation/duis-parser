@@ -23,7 +23,7 @@ import { isServiceReferenceVariant, ServiceReferenceVariant } from './srv'
 export interface RequestId {
   originatorId: string
   targetId: string
-  counter: number
+  counter: bigint
 }
 
 export function isRequestId(o: unknown): o is RequestId {
@@ -34,7 +34,7 @@ export function isRequestId(o: unknown): o is RequestId {
     'originatorId' in x &&
     'targetId' in x &&
     'counter' in x &&
-    typeof x.counter === 'number' &&
+    typeof x.counter === 'bigint' &&
     typeof x.targetId === 'string' &&
     typeof x.originatorId === 'string'
   )

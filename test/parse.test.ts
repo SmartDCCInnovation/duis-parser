@@ -109,7 +109,7 @@ describe('parser SRV 4.1.1/simplified', () => {
           requestId: {
             originatorId: '90-b3-d5-1f-30-01-00-00',
             targetId: '00-db-12-34-56-78-90-a3',
-            counter: 1000,
+            counter: BigInt(1000),
           },
           serviceReference: '4.1',
           serviceReferenceVariant: srv.lookupSRV(
