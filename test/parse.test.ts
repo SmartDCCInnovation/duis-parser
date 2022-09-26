@@ -186,3 +186,43 @@ describe('parser response', () => {
     })
   })
 })
+
+describe('parseRequestID', () => {
+  test('nominal-uppercase', () => {
+    expect(
+      parser.parseRequestID(
+        '90-B3-D5-1F-30-01-00-00:88-73-84-57-00-2F-96-6C:1658482675800'
+      )
+    ).toStrictEqual({
+      originatorId: '90-b3-d5-1f-30-01-00-00',
+      targetId: '88-73-84-57-00-2f-96-6c',
+      counter: BigInt(1658482675800),
+    })
+  })
+
+  test('nominal-lowercase', () => {
+    expect(
+      parser.parseRequestID(
+        '90-b3-d5-1f-30-01-00-00:88-73-84-57-00-2f-96-6c:1658482675800'
+      )
+    ).toStrictEqual({
+      originatorId: '90-b3-d5-1f-30-01-00-00',
+      targetId: '88-73-84-57-00-2f-96-6c',
+      counter: BigInt(1658482675800),
+    })
+  })
+
+  test('missing-field', () => {
+    expect(() =>
+      parser.parseRequestID('90-b3-d5-1f-30-01-00-00:1658482675800')
+    ).toThrowError('bad request id')
+  })
+
+  test('extra-field', () => {
+    expect(() =>
+      parser.parseRequestID(
+        '90-b3-d5-1f-30-01-00-00::88-73-84-57-00-2f-96-6c:1658482675800'
+      )
+    ).toThrowError('bad request id')
+  })
+})
