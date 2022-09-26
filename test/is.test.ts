@@ -304,7 +304,7 @@ describe('typeing judgements', () => {
         duis.isRequestId({
           originatorId: 'string',
           targetId: 'string',
-          counter: 0,
+          counter: BigInt(0),
         })
       ).toBeTruthy()
     })
@@ -313,7 +313,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isRequestId({
           targetId: 'string',
-          counter: 0,
+          counter: BigInt(0),
         })
       ).toBeFalsy()
     })
@@ -321,7 +321,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isRequestId({
           originatorId: 'string',
-          counter: 0,
+          counter: BigInt(0),
         })
       ).toBeFalsy()
     })
@@ -410,7 +410,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -430,7 +430,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -449,7 +449,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -483,7 +483,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -503,7 +503,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
@@ -522,7 +522,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
           },
@@ -560,12 +560,12 @@ describe('typeing judgements', () => {
           requestId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseCode: 'string',
           responseDateTime: 'string',
@@ -580,7 +580,7 @@ describe('typeing judgements', () => {
           responseId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseCode: 'string',
           responseDateTime: 'string',
@@ -595,7 +595,7 @@ describe('typeing judgements', () => {
           requestId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseCode: 'string',
           responseDateTime: 'string',
@@ -610,12 +610,12 @@ describe('typeing judgements', () => {
           requestId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseCode: 'string',
           responseDateTime: 'string',
@@ -635,7 +635,7 @@ describe('typeing judgements', () => {
           responseId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseCode: 'string',
           responseDateTime: 'string',
@@ -650,7 +650,7 @@ describe('typeing judgements', () => {
           requestId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseId: null,
           responseCode: 'string',
@@ -666,12 +666,12 @@ describe('typeing judgements', () => {
           requestId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseDateTime: 'string',
         })
@@ -685,12 +685,12 @@ describe('typeing judgements', () => {
           requestId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseId: {
             originatorId: 'string',
             targetId: 'string',
-            counter: 0,
+            counter: BigInt(0),
           },
           responseCode: 'string',
         })
@@ -861,7 +861,7 @@ describe('typeing judgements', () => {
               requestId: {
                 originatorId: 'string',
                 targetId: 'string',
-                counter: 0,
+                counter: BigInt(0),
               },
               serviceReference: 'string',
               serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -934,12 +934,12 @@ describe('typeing judgements', () => {
               requestId: {
                 originatorId: 'string',
                 targetId: 'string',
-                counter: 0,
+                counter: BigInt(0),
               },
               responseId: {
                 originatorId: 'string',
                 targetId: 'string',
-                counter: 0,
+                counter: BigInt(0),
               },
               responseCode: 'string',
               responseDateTime: 'string',
@@ -982,7 +982,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -1001,7 +1001,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: 'string',
@@ -1041,7 +1041,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -1059,7 +1059,7 @@ describe('typeing judgements', () => {
             responseId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             responseCode: 'string',
             responseDateTime: 'string',
@@ -1098,7 +1098,7 @@ describe('typeing judgements', () => {
             responseId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             responseCode: 'string',
             responseDateTime: 'string',
@@ -1122,7 +1122,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -1162,7 +1162,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: 'string',
@@ -1181,7 +1181,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: 'string',
@@ -1200,7 +1200,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -1219,7 +1219,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: 'string',
@@ -1250,7 +1250,7 @@ describe('typeing judgements', () => {
               requestId: {
                 originatorId: 'string',
                 targetId: 'string',
-                counter: 0,
+                counter: BigInt(0),
               },
               serviceReference: 'string',
               serviceReferenceVariant: 'string',
@@ -1291,7 +1291,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: 'string',
@@ -1310,7 +1310,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: 'string',
@@ -1329,7 +1329,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
@@ -1348,7 +1348,7 @@ describe('typeing judgements', () => {
             requestId: {
               originatorId: 'string',
               targetId: 'string',
-              counter: 0,
+              counter: BigInt(0),
             },
             serviceReference: 'string',
             serviceReferenceVariant: 'string',
@@ -1379,7 +1379,7 @@ describe('typeing judgements', () => {
               requestId: {
                 originatorId: 'string',
                 targetId: 'string',
-                counter: 0,
+                counter: BigInt(0),
               },
               serviceReference: 'string',
               serviceReferenceVariant: 'string',

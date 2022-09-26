@@ -31,7 +31,7 @@ describe('constructDuis/simple', () => {
           requestId: {
             originatorId: '90-B3-D5-1F-30-01-00-00',
             targetId: '00-DB-12-34-56-78-90-A3',
-            counter: 9001,
+            counter: BigInt(9001),
           },
           serviceReference: '4.1',
           serviceReferenceVariant: srv.lookupSRV(
@@ -56,7 +56,7 @@ describe('constructDuis/simple', () => {
           requestId: {
             originatorId: '90-B3-D5-1F-30-01-00-00',
             targetId: '00-DB-12-34-56-78-90-A3',
-            counter: 9001,
+            counter: BigInt(9001),
           },
           serviceReference: '4.1',
           serviceReferenceVariant: '4.1.1',
@@ -78,7 +78,7 @@ describe('constructDuis/simple', () => {
           requestId: {
             originatorId: '90-B3-D5-1F-30-01-00-00'.toLowerCase(),
             targetId: '00-DB-12-34-56-78-90-A3'.toLowerCase(),
-            counter: 9001,
+            counter: BigInt(9001),
           },
           serviceReference: '4.1',
           serviceReferenceVariant: srv.lookupSRV(
@@ -102,7 +102,7 @@ describe('constructDuis/simple', () => {
           requestId: {
             originatorId: '90-B3-D5-1F-30-01-00-00',
             targetId: '00-DB-12-34-56-78-90-A3',
-            counter: 9001,
+            counter: BigInt(9001),
           },
           serviceReference: '4.1',
           serviceReferenceVariant: '4.1.1',
@@ -126,7 +126,7 @@ describe('constructDuis/simple', () => {
           requestId: {
             originatorId: '90-B3-D5-1F-30-01-00-00',
             targetId: '00-DB-12-34-56-78-90-A3',
-            counter: 9001,
+            counter: BigInt(9001),
           },
           responseCode: 'E65',
           responseDateTime: '2022-07-22T09:37:56.134Z',
@@ -151,7 +151,7 @@ describe('constructDuis/simple', () => {
           requestId: {
             originatorId: '90-b3-d5-1f-30-01-00-00',
             targetId: '00-db-12-34-56-78-90-a3',
-            counter: 9001,
+            counter: BigInt(9001),
           },
           responseCode: 'E65',
           responseDateTime: '2022-07-22T09:37:56.134Z',
@@ -175,7 +175,7 @@ describe('constructDuis/simple', () => {
           responseId: {
             originatorId: '90-b3-d5-1f-30-01-00-00',
             targetId: '00-db-12-34-56-78-90-a3',
-            counter: 9001,
+            counter: BigInt(9001),
           },
           responseCode: 'E65',
           responseDateTime: '2022-07-22T09:37:56.134Z',

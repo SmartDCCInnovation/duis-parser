@@ -61,7 +61,7 @@ function parseRequestID(id: string): RequestId {
       return {
         originatorId: parts[0],
         targetId: parts[1],
-        counter: Number(parts[2]),
+        counter: BigInt(parts[2]),
       }
     }
   }

@@ -41,7 +41,7 @@ yield the following:
     requestId: {
       originatorId: '90-b3-d5-1f-30-01-00-00',
       targetId: '00-db-12-34-56-78-90-a0',
-      counter: 1000
+      counter: 1000n
     },
     commandVariant: {
       number: 1,
@@ -79,6 +79,7 @@ To aid with interrogating a DUIS response to determine what type of response is
 provided a number of utility functions are provided:
 
   * `isSimplifiedDuisInput`
+  * `isSimplifiedDuisInputRequest`
   * `isSimplifiedDuisOutput`
   * `isSimplifiedDuisOutputRequest`
   * `isSimplifiedDuisOutputResponse`
@@ -122,7 +123,7 @@ above.
     requestId: {
       originatorId: '90-b3-d5-1f-30-01-00-00',
       targetId: '00-db-12-34-56-78-90-a0',
-      counter: 1000
+      counter: 1000n
     },
     commandVariant: '1',
     serviceReference: '4.1',
