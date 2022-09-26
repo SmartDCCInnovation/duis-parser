@@ -192,4 +192,10 @@ describe('constructDuis/simple', () => {
       ).toStrictEqual(x)
     })
   })
+
+  test('bad-input', () => {
+    expect(() => {
+      parser.constructDuis('simplified', {} as parser.SimplifiedDuisInput)
+    }).toThrowError('input is not simplifed duis')
+  })
 })

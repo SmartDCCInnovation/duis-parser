@@ -20,6 +20,7 @@
 import { XMLParser, XMLBuilder } from 'fast-xml-parser'
 import { lookupCV } from './cv'
 import {
+  isSimplifiedDuisInput,
   RequestId,
   ResponseHeader,
   SimplifiedDuisInput,
@@ -54,7 +55,7 @@ export {
   isXMLData,
 } from './duis'
 
-function parseRequestID(id: string): RequestId {
+export function parseRequestID(id: string): RequestId {
   if (typeof id === 'string') {
     const parts = id.toLowerCase().split(':')
     if (parts.length === 3) {
@@ -171,13 +172,10 @@ export function constructDuis(
   version?: string
 ): string {
   if (mode === 'simplified') {
-    const simple = object as SimplifiedDuisInput
-    if (
-      !simple.header ||
-      ['request', 'response'].indexOf(simple.header.type) < 0
-    ) {
-      throw new Error('bad header')
+    if (!isSimplifiedDuisInput(object)) {
+      throw new Error('input is not simplifed duis')
     }
+    const simple = object
     if (simple.header.type === 'request') {
       object = {
         '?xml': { '@_version': '1.0', '@_encoding': 'UTF-8' },
