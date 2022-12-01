@@ -55,7 +55,7 @@ export {
   isXMLData,
 } from './duis'
 
-export function parseRequestID(id: string): RequestId {
+export function parseRequestID(id: string): RequestId<bigint> {
   if (typeof id === 'string') {
     const parts = id.toLowerCase().split(':')
     if (parts.length === 3) {
@@ -140,7 +140,8 @@ export function parseDuis(
       x.header.requestId = parseRequestID(requestIdText)
     }
     if (typeof responseIdText === 'string') {
-      ;(x.header as ResponseHeader).responseId = parseRequestID(responseIdText)
+      ;(x.header as ResponseHeader<bigint>).responseId =
+        parseRequestID(responseIdText)
     }
     return x
   }
