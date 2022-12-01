@@ -20,67 +20,74 @@
 import { CommandVariant, isCommandVariant } from './cv'
 import { isServiceReferenceVariant, ServiceReferenceVariant } from './srv'
 
-export interface RequestId {
+export interface RequestId<C> {
   originatorId: string
   targetId: string
-  counter: bigint
+  counter: C
 }
 
-export function isRequestId(o: unknown): o is RequestId {
-  const x = o as RequestId
+export function isRequestId<C>(
+  o: unknown,
+  isC: (o: unknown) => o is C
+): o is RequestId<C> {
+  const x = o as RequestId<C>
   return (
     x !== null &&
     typeof x === 'object' &&
     'originatorId' in x &&
     'targetId' in x &&
     'counter' in x &&
-    typeof x.counter === 'bigint' &&
+    isC(x.counter) &&
     typeof x.targetId === 'string' &&
     typeof x.originatorId === 'string'
   )
 }
 
-export interface RequestHeader<CV, SRV> {
+export interface RequestHeader<C, CV, SRV> {
   type: 'request'
   commandVariant: CV
-  requestId: RequestId
+  requestId: RequestId<C>
   serviceReference: string
   serviceReferenceVariant: SRV
 }
 
-export function isRequestHeader<CV, SRV>(
+export function isRequestHeader<C, CV, SRV>(
   o: unknown,
+  isC: (o: unknown) => o is C,
   isCV: (o: unknown) => o is CV,
   isSRV: (o: unknown) => o is SRV
-): o is RequestHeader<CV, SRV> {
-  const x = o as RequestHeader<CV, SRV>
+): o is RequestHeader<C, CV, SRV> {
+  const x = o as RequestHeader<C, CV, SRV>
   return (
     x !== null &&
     typeof x === 'object' &&
     x.type === 'request' &&
     isCV(x.commandVariant) &&
-    isRequestId(x.requestId) &&
+    isRequestId(x.requestId, isC) &&
     typeof x.serviceReference === 'string' &&
     isSRV(x.serviceReferenceVariant)
   )
 }
 
-export interface ResponseHeader {
+export interface ResponseHeader<C> {
   type: 'response'
-  requestId?: RequestId
-  responseId?: RequestId
+  requestId?: RequestId<C>
+  responseId?: RequestId<C>
   responseCode: string
   responseDateTime: string
 }
 
-export function isResponseHeader(o: unknown): o is ResponseHeader {
-  const x = o as ResponseHeader
+export function isResponseHeader<C>(
+  o: unknown,
+  isC: (o: unknown) => o is C
+): o is ResponseHeader<C> {
+  const x = o as ResponseHeader<C>
   return (
     x !== null &&
     typeof x === 'object' &&
     x.type === 'response' &&
-    (x.requestId === undefined || isRequestId(x.requestId)) &&
-    (x.responseId === undefined || isRequestId(x.responseId)) &&
+    (x.requestId === undefined || isRequestId(x.requestId, isC)) &&
+    (x.responseId === undefined || isRequestId(x.responseId, isC)) &&
     typeof x.responseCode === 'string' &&
     typeof x.responseDateTime === 'string'
   )
@@ -108,8 +115,8 @@ export function isXMLData(o: unknown): o is XMLData {
   )
 }
 
-export interface SimplifiedDuisRequest<CV, SRV> {
-  header: RequestHeader<CV, SRV>
+export interface SimplifiedDuisRequest<C, CV, SRV> {
+  header: RequestHeader<C, CV, SRV>
   body: XMLData
 }
 
@@ -231,72 +238,81 @@ export type SimplifiedDuisResponseBody =
   | SimplifiedDuisResponse_DeviceAlertMessage
   | SimplifiedDuisResponse_DCCAlertMessage
 
-export interface SimplifiedDuisResponse<R> {
-  header: ResponseHeader
+export interface SimplifiedDuisResponse<C, R> {
+  header: ResponseHeader<C>
   body: R
 }
 
-export type SimplifiedDuis<CV, SRV, R> =
-  | SimplifiedDuisRequest<CV, SRV>
-  | SimplifiedDuisResponse<R>
+export type SimplifiedDuis<C, CV, SRV, R> =
+  | SimplifiedDuisRequest<C, CV, SRV>
+  | SimplifiedDuisResponse<C, R>
 
 export type SimplifiedDuisOutput = SimplifiedDuis<
+  bigint,
   CommandVariant,
   ServiceReferenceVariant,
   SimplifiedDuisResponseBody
 >
 export type SimplifiedDuisOutputRequest = SimplifiedDuisRequest<
+  bigint,
   CommandVariant,
   ServiceReferenceVariant
 >
-export type SimplifiedDuisOutputResponse =
-  SimplifiedDuisResponse<SimplifiedDuisResponseBody>
+export type SimplifiedDuisOutputResponse = SimplifiedDuisResponse<
+  bigint,
+  SimplifiedDuisResponseBody
+>
 export type SimplifiedDuisInput = SimplifiedDuis<
+  number | bigint,
   CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
   ServiceReferenceVariant | string,
   SimplifiedDuisResponseBody
 >
 export type SimplifiedDuisInputRequest = SimplifiedDuisRequest<
+  number | bigint,
   CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
   ServiceReferenceVariant | string
 >
 
-export function isSimplifiedDuisRequest<CV, SRV>(
+export function isSimplifiedDuisRequest<C, CV, SRV>(
   o: unknown,
+  isC: (o: unknown) => o is C,
   isCV: (o: unknown) => o is CV,
   isSRV: (o: unknown) => o is SRV
-): o is SimplifiedDuisRequest<CV, SRV> {
-  const x = o as SimplifiedDuis<CV, SRV, never>
+): o is SimplifiedDuisRequest<C, CV, SRV> {
+  const x = o as SimplifiedDuis<C, CV, SRV, never>
   return (
     x !== null &&
     typeof x === 'object' &&
     isXMLData(x.body) &&
-    isRequestHeader(x.header, isCV, isSRV)
+    isRequestHeader(x.header, isC, isCV, isSRV)
   )
 }
 
-export function isSimplifiedDuisResponse<R>(
+export function isSimplifiedDuisResponse<C, R>(
   o: unknown,
+  isC: (o: unknown) => o is C,
   isR: (o: unknown) => o is R
-): o is SimplifiedDuisResponse<R> {
-  const x = o as SimplifiedDuisResponse<R>
+): o is SimplifiedDuisResponse<C, R> {
+  const x = o as SimplifiedDuisResponse<C, R>
   return (
     x !== null &&
     typeof x === 'object' &&
     isR(x.body) &&
-    isResponseHeader(x.header)
+    isResponseHeader(x.header, isC)
   )
 }
 
-export function isSimplifiedDuis<CV, SRV, R>(
+export function isSimplifiedDuis<C, CV, SRV, R>(
   o: unknown,
+  isC: (o: unknown) => o is C,
   isCV: (o: unknown) => o is CV,
   isSRV: (o: unknown) => o is SRV,
   isR: (o: unknown) => o is R
-): o is SimplifiedDuis<CV, SRV, R> {
+): o is SimplifiedDuis<C, CV, SRV, R> {
   return (
-    isSimplifiedDuisRequest<CV, SRV>(o, isCV, isSRV) ||
-    isSimplifiedDuisResponse<R>(o, isR)
+    isSimplifiedDuisRequest<C, CV, SRV>(o, isC, isCV, isSRV) ||
+    isSimplifiedDuisResponse<C, R>(o, isC, isR)
   )
 }
 
@@ -796,11 +812,13 @@ export function isSimplifiedDuisResponseBody(
 
 export function isSimplifiedDuisOutput(o: unknown): o is SimplifiedDuisOutput {
   return isSimplifiedDuis<
+    bigint,
     CommandVariant,
     ServiceReferenceVariant,
     SimplifiedDuisResponseBody
   >(
     o,
+    (o: unknown): o is bigint => typeof o === 'bigint',
     isCommandVariant,
     isServiceReferenceVariant,
     isSimplifiedDuisResponseBody
@@ -809,8 +827,13 @@ export function isSimplifiedDuisOutput(o: unknown): o is SimplifiedDuisOutput {
 export function isSimplifiedDuisOutputRequest(
   o: unknown
 ): o is SimplifiedDuisOutputRequest {
-  return isSimplifiedDuisRequest<CommandVariant, ServiceReferenceVariant>(
+  return isSimplifiedDuisRequest<
+    bigint,
+    CommandVariant,
+    ServiceReferenceVariant
+  >(
     o,
+    (o: unknown): o is bigint => typeof o === 'bigint',
     isCommandVariant,
     isServiceReferenceVariant
   )
@@ -818,16 +841,23 @@ export function isSimplifiedDuisOutputRequest(
 export function isSimplifiedDuisOutputResponse(
   o: unknown
 ): o is SimplifiedDuisOutputResponse {
-  return isSimplifiedDuisResponse(o, isSimplifiedDuisResponseBody)
+  return isSimplifiedDuisResponse(
+    o,
+    (o: unknown): o is bigint => typeof o === 'bigint',
+    isSimplifiedDuisResponseBody
+  )
 }
 
 export function isSimplifiedDuisInput(o: unknown): o is SimplifiedDuisInput {
   return isSimplifiedDuis<
+    number | bigint,
     CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
     ServiceReferenceVariant | string,
     SimplifiedDuisResponseBody
   >(
     o,
+    (o: unknown): o is number | bigint =>
+      typeof o === 'number' || typeof o === 'bigint',
     (o: unknown): o is CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 => {
       return (typeof o === 'number' && o >= 1 && o <= 8) || isCommandVariant(o)
     },
@@ -842,10 +872,13 @@ export function isSimplifiedDuisInputRequest(
   o: unknown
 ): o is SimplifiedDuisInputRequest {
   return isSimplifiedDuisRequest<
+    number | bigint,
     CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
     ServiceReferenceVariant | string
   >(
     o,
+    (o: unknown): o is number | bigint =>
+      typeof o === 'number' || typeof o === 'bigint',
     (o: unknown): o is CommandVariant | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 => {
       return (typeof o === 'number' && o >= 1 && o <= 8) || isCommandVariant(o)
     },

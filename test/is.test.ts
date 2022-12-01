@@ -280,76 +280,207 @@ describe('typeing judgements', () => {
   })
 
   describe('RequestId', () => {
-    test('undefined', () => {
-      expect(duis.isRequestId(undefined)).toBeFalsy()
-    })
-    test('null', () => {
-      expect(duis.isRequestId(null)).toBeFalsy()
-    })
-    test('list', () => {
-      expect(duis.isRequestId([])).toBeFalsy()
-    })
-    test('number', () => {
-      expect(duis.isRequestId(5)).toBeFalsy()
-    })
-    test('string', () => {
-      expect(duis.isRequestId('')).toBeFalsy()
-    })
-    test('empty', () => {
-      expect(duis.isRequestId({})).toBeFalsy()
+    describe('bigint', () => {
+      const isBigInt = (o: unknown): o is bigint => typeof o === 'bigint'
+
+      test('undefined', () => {
+        expect(duis.isRequestId(undefined, isBigInt)).toBeFalsy()
+      })
+      test('null', () => {
+        expect(duis.isRequestId(null, isBigInt)).toBeFalsy()
+      })
+      test('list', () => {
+        expect(duis.isRequestId([], isBigInt)).toBeFalsy()
+      })
+      test('number', () => {
+        expect(duis.isRequestId(5, isBigInt)).toBeFalsy()
+      })
+      test('string', () => {
+        expect(duis.isRequestId('', isBigInt)).toBeFalsy()
+      })
+      test('empty', () => {
+        expect(duis.isRequestId({}, isBigInt)).toBeFalsy()
+      })
+
+      test('nominal-bigint', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            isBigInt
+          )
+        ).toBeTruthy()
+      })
+
+      test('nominal-number', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            isBigInt
+          )
+        ).toBeFalsy()
+      })
+
+      test('missing-originator', () => {
+        expect(
+          duis.isRequestId(
+            {
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            isBigInt
+          )
+        ).toBeFalsy()
+      })
+      test('missing-target', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              counter: BigInt(0),
+            },
+            isBigInt
+          )
+        ).toBeFalsy()
+      })
+      test('missing-counter', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              targetId: 'string',
+            },
+            isBigInt
+          )
+        ).toBeFalsy()
+      })
+
+      test('wrong-counter-type', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: '0',
+            },
+            isBigInt
+          )
+        ).toBeFalsy()
+      })
     })
 
-    test('nominal', () => {
-      expect(
-        duis.isRequestId({
-          originatorId: 'string',
-          targetId: 'string',
-          counter: BigInt(0),
-        })
-      ).toBeTruthy()
-    })
+    describe('bigint or number', () => {
+      const isBigIntOrNumber = (o: unknown): o is number | bigint =>
+        typeof o === 'number' || typeof o === 'bigint'
 
-    test('missing-originator', () => {
-      expect(
-        duis.isRequestId({
-          targetId: 'string',
-          counter: BigInt(0),
-        })
-      ).toBeFalsy()
-    })
-    test('missing-target', () => {
-      expect(
-        duis.isRequestId({
-          originatorId: 'string',
-          counter: BigInt(0),
-        })
-      ).toBeFalsy()
-    })
-    test('missing-counter', () => {
-      expect(
-        duis.isRequestId({
-          originatorId: 'string',
-          targetId: 'string',
-        })
-      ).toBeFalsy()
-    })
+      test('undefined', () => {
+        expect(duis.isRequestId(undefined, isBigIntOrNumber)).toBeFalsy()
+      })
+      test('null', () => {
+        expect(duis.isRequestId(null, isBigIntOrNumber)).toBeFalsy()
+      })
+      test('list', () => {
+        expect(duis.isRequestId([], isBigIntOrNumber)).toBeFalsy()
+      })
+      test('number', () => {
+        expect(duis.isRequestId(5, isBigIntOrNumber)).toBeFalsy()
+      })
+      test('string', () => {
+        expect(duis.isRequestId('', isBigIntOrNumber)).toBeFalsy()
+      })
+      test('empty', () => {
+        expect(duis.isRequestId({}, isBigIntOrNumber)).toBeFalsy()
+      })
 
-    test('wrong-counter-type', () => {
-      expect(
-        duis.isRequestId({
-          originatorId: 'string',
-          targetId: 'string',
-          counter: '0',
-        })
-      ).toBeFalsy()
+      test('nominal-bigint', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            isBigIntOrNumber
+          )
+        ).toBeTruthy()
+      })
+
+      test('nominal-number', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            isBigIntOrNumber
+          )
+        ).toBeTruthy()
+      })
+
+      test('missing-originator', () => {
+        expect(
+          duis.isRequestId(
+            {
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            isBigIntOrNumber
+          )
+        ).toBeFalsy()
+      })
+      test('missing-target', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              counter: BigInt(0),
+            },
+            isBigIntOrNumber
+          )
+        ).toBeFalsy()
+      })
+      test('missing-counter', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              targetId: 'string',
+            },
+            isBigIntOrNumber
+          )
+        ).toBeFalsy()
+      })
+
+      test('wrong-counter-type', () => {
+        expect(
+          duis.isRequestId(
+            {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: '0',
+            },
+            isBigIntOrNumber
+          )
+        ).toBeFalsy()
+      })
     })
   })
 
   describe('RequestHeader', () => {
+    const isBigInt = (o: unknown): o is bigint => typeof o === 'bigint'
     test('undefined', () => {
       expect(
         duis.isRequestHeader(
           undefined,
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -359,6 +490,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isRequestHeader(
           null,
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -368,6 +500,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isRequestHeader(
           [],
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -377,6 +510,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isRequestHeader(
           5,
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -386,6 +520,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isRequestHeader(
           '',
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -395,6 +530,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isRequestHeader(
           {},
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -415,6 +551,7 @@ describe('typeing judgements', () => {
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -435,6 +572,7 @@ describe('typeing judgements', () => {
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -454,6 +592,7 @@ describe('typeing judgements', () => {
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -469,6 +608,7 @@ describe('typeing judgements', () => {
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -488,6 +628,7 @@ describe('typeing judgements', () => {
             serviceReference: 'string',
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -507,6 +648,7 @@ describe('typeing judgements', () => {
             },
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -526,6 +668,7 @@ describe('typeing judgements', () => {
             },
             serviceReference: 'string',
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant
         )
@@ -534,166 +677,192 @@ describe('typeing judgements', () => {
   })
 
   describe('ResponseHeader', () => {
+    const isBigInt = (o: unknown): o is bigint => typeof o === 'bigint'
+
     test('undefined', () => {
-      expect(duis.isResponseHeader(undefined)).toBeFalsy()
+      expect(duis.isResponseHeader(undefined, isBigInt)).toBeFalsy()
     })
     test('null', () => {
-      expect(duis.isResponseHeader(null)).toBeFalsy()
+      expect(duis.isResponseHeader(null, isBigInt)).toBeFalsy()
     })
     test('list', () => {
-      expect(duis.isResponseHeader([])).toBeFalsy()
+      expect(duis.isResponseHeader([], isBigInt)).toBeFalsy()
     })
     test('number', () => {
-      expect(duis.isResponseHeader(5)).toBeFalsy()
+      expect(duis.isResponseHeader(5, isBigInt)).toBeFalsy()
     })
     test('string', () => {
-      expect(duis.isResponseHeader('')).toBeFalsy()
+      expect(duis.isResponseHeader('', isBigInt)).toBeFalsy()
     })
     test('empty', () => {
-      expect(duis.isResponseHeader({})).toBeFalsy()
+      expect(duis.isResponseHeader({}, isBigInt)).toBeFalsy()
     })
 
     test('nominal', () => {
       expect(
-        duis.isResponseHeader({
-          type: 'response',
-          requestId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
+        duis.isResponseHeader(
+          {
+            type: 'response',
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseCode: 'string',
+            responseDateTime: 'string',
           },
-          responseId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
-          },
-          responseCode: 'string',
-          responseDateTime: 'string',
-        })
+          isBigInt
+        )
       ).toBeTruthy()
     })
 
     test('optional-requestId', () => {
       expect(
-        duis.isResponseHeader({
-          type: 'response',
-          responseId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
+        duis.isResponseHeader(
+          {
+            type: 'response',
+            responseId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseCode: 'string',
+            responseDateTime: 'string',
           },
-          responseCode: 'string',
-          responseDateTime: 'string',
-        })
+          isBigInt
+        )
       ).toBeTruthy()
     })
 
     test('optional-responseId', () => {
       expect(
-        duis.isResponseHeader({
-          type: 'response',
-          requestId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
+        duis.isResponseHeader(
+          {
+            type: 'response',
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseCode: 'string',
+            responseDateTime: 'string',
           },
-          responseCode: 'string',
-          responseDateTime: 'string',
-        })
+          isBigInt
+        )
       ).toBeTruthy()
     })
 
     test('wrong-type', () => {
       expect(
-        duis.isResponseHeader({
-          type: 'request',
-          requestId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
+        duis.isResponseHeader(
+          {
+            type: 'request',
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseCode: 'string',
+            responseDateTime: 'string',
           },
-          responseId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
-          },
-          responseCode: 'string',
-          responseDateTime: 'string',
-        })
+          isBigInt
+        )
       ).toBeFalsy()
     })
 
     test('wrong-requestId', () => {
       expect(
-        duis.isResponseHeader({
-          type: 'response',
-          requestId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: '0',
+        duis.isResponseHeader(
+          {
+            type: 'response',
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: '0',
+            },
+            responseId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseCode: 'string',
+            responseDateTime: 'string',
           },
-          responseId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
-          },
-          responseCode: 'string',
-          responseDateTime: 'string',
-        })
+          isBigInt
+        )
       ).toBeFalsy()
     })
 
     test('wrong-responseId', () => {
       expect(
-        duis.isResponseHeader({
-          type: 'response',
-          requestId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
+        duis.isResponseHeader(
+          {
+            type: 'response',
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseId: null,
+            responseCode: 'string',
+            responseDateTime: 'string',
           },
-          responseId: null,
-          responseCode: 'string',
-          responseDateTime: 'string',
-        })
+          isBigInt
+        )
       ).toBeFalsy()
     })
 
     test('missing-responseCode', () => {
       expect(
-        duis.isResponseHeader({
-          type: 'response',
-          requestId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
+        duis.isResponseHeader(
+          {
+            type: 'response',
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseDateTime: 'string',
           },
-          responseId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
-          },
-          responseDateTime: 'string',
-        })
+          isBigInt
+        )
       ).toBeFalsy()
     })
 
     test('missing-responseDateTime', () => {
       expect(
-        duis.isResponseHeader({
-          type: 'response',
-          requestId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
+        duis.isResponseHeader(
+          {
+            type: 'response',
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: BigInt(0),
+            },
+            responseCode: 'string',
           },
-          responseId: {
-            originatorId: 'string',
-            targetId: 'string',
-            counter: BigInt(0),
-          },
-          responseCode: 'string',
-        })
+          isBigInt
+        )
       ).toBeFalsy()
     })
   })
@@ -790,10 +959,13 @@ describe('typeing judgements', () => {
   })
 
   describe('SimplifiedDuis', () => {
+    const isBigInt = (o: unknown): o is bigint => typeof o === 'bigint'
+
     test('undefined', () => {
       expect(
         duis.isSimplifiedDuis(
           undefined,
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -804,6 +976,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isSimplifiedDuis(
           null,
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -814,6 +987,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isSimplifiedDuis(
           [],
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -824,6 +998,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isSimplifiedDuis(
           5,
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -834,6 +1009,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isSimplifiedDuis(
           '',
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -844,6 +1020,7 @@ describe('typeing judgements', () => {
       expect(
         duis.isSimplifiedDuis(
           {},
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -868,6 +1045,7 @@ describe('typeing judgements', () => {
             },
             body: { a: 'c' },
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -891,6 +1069,7 @@ describe('typeing judgements', () => {
               },
             },
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -905,6 +1084,7 @@ describe('typeing judgements', () => {
             header: {},
             body: { a: 'c' },
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -918,6 +1098,7 @@ describe('typeing judgements', () => {
           {
             body: { a: 'c' },
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -945,6 +1126,7 @@ describe('typeing judgements', () => {
               responseDateTime: 'string',
             },
           },
+          isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
           duis.isSimplifiedDuisResponseBody
@@ -1063,6 +1245,25 @@ describe('typeing judgements', () => {
             },
             responseCode: 'string',
             responseDateTime: 'string',
+          },
+          body: { a: 'c' },
+        })
+      ).toBeFalsy()
+    })
+
+    test('nominal-wrongCounter', () => {
+      expect(
+        duis.isSimplifiedDuisOutputRequest({
+          header: {
+            type: 'request',
+            commandVariant: cv.lookupCV(1),
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
           body: { a: 'c' },
         })
@@ -1388,6 +1589,25 @@ describe('typeing judgements', () => {
           })
         ).toBe(l[1])
       })
+    })
+
+    test('nominal-requestNumber', () => {
+      expect(
+        duis.isSimplifiedDuisInputRequest({
+          header: {
+            type: 'request',
+            commandVariant: cv.lookupCV(1),
+            requestId: {
+              originatorId: 'string',
+              targetId: 'string',
+              counter: 0,
+            },
+            serviceReference: 'string',
+            serviceReferenceVariant: 'string',
+          },
+          body: { a: 'c' },
+        })
+      ).toBeTruthy()
     })
   })
 })
