@@ -75,7 +75,7 @@ export function parseRequestID(id: string): RequestId<bigint> {
  */
 export function parseDuis(
   mode: 'simplified',
-  xmlData: string | Buffer
+  xmlData: string | Buffer,
 ): SimplifiedDuisOutput
 
 /**
@@ -85,7 +85,7 @@ export function parseDuis(mode: 'normal', xmlData: string | Buffer): XMLData
 
 export function parseDuis(
   mode: 'normal' | 'simplified',
-  xmlData: string | Buffer
+  xmlData: string | Buffer,
 ): SimplifiedDuisOutput | XMLData {
   const parser = new XMLParser({
     ignoreAttributes: false,
@@ -114,7 +114,7 @@ export function parseDuis(
         type: 'request',
         requestId: parseRequestID(requestId),
         commandVariant: lookupCV(
-          Number(header?.CommandVariant) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8
+          Number(header?.CommandVariant) as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8,
         ),
         serviceReference: header?.ServiceReference,
         serviceReferenceVariant,
@@ -153,7 +153,7 @@ export function constructDuis(mode: 'normal', object: XMLData): string
 export function constructDuis(
   mode: 'simplified',
   object: SimplifiedDuisInput,
-  version?: string
+  version?: string,
 ): string
 
 /**
@@ -170,7 +170,7 @@ export function constructDuis(
 export function constructDuis(
   mode: 'normal' | 'simplified',
   object: XMLData | SimplifiedDuisInput,
-  version?: string
+  version?: string,
 ): string {
   if (mode === 'simplified') {
     if (!isSimplifiedDuisInput(object)) {

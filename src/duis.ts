@@ -28,7 +28,7 @@ export interface RequestId<C> {
 
 export function isRequestId<C>(
   o: unknown,
-  isC: (o: unknown) => o is C
+  isC: (o: unknown) => o is C,
 ): o is RequestId<C> {
   const x = o as RequestId<C>
   return (
@@ -55,7 +55,7 @@ export function isRequestHeader<C, CV, SRV>(
   o: unknown,
   isC: (o: unknown) => o is C,
   isCV: (o: unknown) => o is CV,
-  isSRV: (o: unknown) => o is SRV
+  isSRV: (o: unknown) => o is SRV,
 ): o is RequestHeader<C, CV, SRV> {
   const x = o as RequestHeader<C, CV, SRV>
   return (
@@ -79,7 +79,7 @@ export interface ResponseHeader<C> {
 
 export function isResponseHeader<C>(
   o: unknown,
-  isC: (o: unknown) => o is C
+  isC: (o: unknown) => o is C,
 ): o is ResponseHeader<C> {
   const x = o as ResponseHeader<C>
   return (
@@ -110,7 +110,7 @@ export function isXMLData(o: unknown): o is XMLData {
       (k) =>
         typeof x[k] === 'string' ||
         isXMLData(x[k]) ||
-        (Array.isArray(x[k]) && (x[k] as XMLData[]).every(isXMLData))
+        (Array.isArray(x[k]) && (x[k] as XMLData[]).every(isXMLData)),
     )
   )
 }
@@ -278,7 +278,7 @@ export function isSimplifiedDuisRequest<C, CV, SRV>(
   o: unknown,
   isC: (o: unknown) => o is C,
   isCV: (o: unknown) => o is CV,
-  isSRV: (o: unknown) => o is SRV
+  isSRV: (o: unknown) => o is SRV,
 ): o is SimplifiedDuisRequest<C, CV, SRV> {
   const x = o as SimplifiedDuis<C, CV, SRV, never>
   return (
@@ -292,7 +292,7 @@ export function isSimplifiedDuisRequest<C, CV, SRV>(
 export function isSimplifiedDuisResponse<C, R>(
   o: unknown,
   isC: (o: unknown) => o is C,
-  isR: (o: unknown) => o is R
+  isR: (o: unknown) => o is R,
 ): o is SimplifiedDuisResponse<C, R> {
   const x = o as SimplifiedDuisResponse<C, R>
   return (
@@ -308,7 +308,7 @@ export function isSimplifiedDuis<C, CV, SRV, R>(
   isC: (o: unknown) => o is C,
   isCV: (o: unknown) => o is CV,
   isSRV: (o: unknown) => o is SRV,
-  isR: (o: unknown) => o is R
+  isR: (o: unknown) => o is R,
 ): o is SimplifiedDuis<C, CV, SRV, R> {
   return (
     isSimplifiedDuisRequest<C, CV, SRV>(o, isC, isCV, isSRV) ||
@@ -317,7 +317,7 @@ export function isSimplifiedDuis<C, CV, SRV, R>(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_CINMessage(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_CINMessage {
   const x = o as SimplifiedDuisResponse_ResponseMessage_CINMessage
   return (
@@ -331,7 +331,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_CINMessage(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_DSPInventory(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_DSPInventory {
   const x = o as SimplifiedDuisResponse_ResponseMessage_DSPInventory
   return (
@@ -343,7 +343,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_DSPInventory(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_DSPOptIn(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_DSPOptIn {
   const x = o as SimplifiedDuisResponse_ResponseMessage_DSPOptIn
   return (
@@ -355,7 +355,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_DSPOptIn(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_DSPSchedulesRead(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_DSPSchedulesRead {
   const x = o as SimplifiedDuisResponse_ResponseMessage_DSPSchedulesRead
   return (
@@ -367,7 +367,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_DSPSchedulesRead(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_DSPScheduledMessage(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_DSPScheduledMessage {
   const x = o as SimplifiedDuisResponse_ResponseMessage_DSPScheduledMessage
   return (
@@ -381,7 +381,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_DSPScheduledMessage(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_DSPScheduleID(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_DSPScheduleID {
   const x = o as SimplifiedDuisResponse_ResponseMessage_DSPScheduleID
   return (
@@ -390,7 +390,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_DSPScheduleID(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_DSPUpdateFirmwareWarning(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_DSPUpdateFirmwareWarning {
   const x = o as SimplifiedDuisResponse_ResponseMessage_DSPUpdateFirmwareWarning
   return (
@@ -402,7 +402,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_DSPUpdateFirmwareWarnin
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_DSPUpdatePPMIDFirmwareWarning(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_DSPUpdatePPMIDFirmwareWarning {
   const x =
     o as SimplifiedDuisResponse_ResponseMessage_DSPUpdatePPMIDFirmwareWarning
@@ -415,7 +415,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_DSPUpdatePPMIDFirmwareW
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_DSPWANMatrix(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_DSPWANMatrix {
   const x = o as SimplifiedDuisResponse_ResponseMessage_DSPWANMatrix
   return (
@@ -427,7 +427,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_DSPWANMatrix(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_FutureDatedDeviceAlertMessage(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_FutureDatedDeviceAlertMessage {
   const x =
     o as SimplifiedDuisResponse_ResponseMessage_FutureDatedDeviceAlertMessage
@@ -444,7 +444,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_FutureDatedDeviceAlertM
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_GBCSPayload(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_GBCSPayload {
   const x = o as SimplifiedDuisResponse_ResponseMessage_GBCSPayload
   return (
@@ -453,7 +453,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_GBCSPayload(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_LocalCommand(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_LocalCommand {
   const x = o as SimplifiedDuisResponse_ResponseMessage_LocalCommand
   return (
@@ -466,7 +466,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_LocalCommand(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_PreCommand(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_PreCommand {
   const x = o as SimplifiedDuisResponse_ResponseMessage_PreCommand
   return (
@@ -480,7 +480,7 @@ export function isSimplifiedDuisResponse_ResponseMessage_PreCommand(
 }
 
 export function isSimplifiedDuisResponse_ResponseMessage_NoBody(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage_NoBody {
   const x = o as SimplifiedDuisResponse_ResponseMessage_NoBody
   return (
@@ -488,14 +488,14 @@ export function isSimplifiedDuisResponse_ResponseMessage_NoBody(
     typeof x === 'object' &&
     /* ensure not additional keys */
     Object.keys(x).every(
-      (k) => k === 'ServiceReference' || k === 'ServiceReferenceVariant'
+      (k) => k === 'ServiceReference' || k === 'ServiceReferenceVariant',
     )
   )
 }
 
 export function _isSimplifiedDuisResponseBody_ResponseMessage<R>(
   o: unknown,
-  isR: (o: unknown) => o is R
+  isR: (o: unknown) => o is R,
 ): o is SimplifiedDuisResponse_ResponseMessage<R> {
   const x = o as SimplifiedDuisResponse_ResponseMessage<R>
   return (
@@ -527,82 +527,82 @@ export type SimplifiedDuisResponseBody_ResponseMessage_Payload =
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'CINMessage',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_CINMessage>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'DSPInventory',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPInventory>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'DSPOptIn',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPOptIn>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'DSPSchedulesRead',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPSchedulesRead>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'DSPScheduledMessage',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPScheduledMessage>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'DSPScheduleID',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPScheduleID>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'DSPUpdateFirmwareWarning',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPUpdateFirmwareWarning>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'DSPUpdatePPMIDFirmwareWarning',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPUpdatePPMIDFirmwareWarning>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'DSPWANMatrix',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPWANMatrix>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'FutureDatedDeviceAlertMessage',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_FutureDatedDeviceAlertMessage>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'GBCSPayload',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_GBCSPayload>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'LocalCommand',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_LocalCommand>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'PreCommand',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_PreCommand>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'PreCommand',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_PreCommand>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: 'NoBody',
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_NoBody>
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_X(
   type: SimplifiedDuisResponseBody_ResponseMessage_Payload,
-  o: unknown
+  o: unknown,
 ): o is
   | SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_CINMessage>
   | SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPInventory>
@@ -622,88 +622,88 @@ export function isSimplifiedDuisResponseBody_ResponseMessage_X(
     case 'CINMessage':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_CINMessage
+        isSimplifiedDuisResponse_ResponseMessage_CINMessage,
       )
     case 'DSPInventory':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_DSPInventory
+        isSimplifiedDuisResponse_ResponseMessage_DSPInventory,
       )
 
     case 'DSPOptIn':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_DSPOptIn
+        isSimplifiedDuisResponse_ResponseMessage_DSPOptIn,
       )
 
     case 'DSPSchedulesRead':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_DSPSchedulesRead
+        isSimplifiedDuisResponse_ResponseMessage_DSPSchedulesRead,
       )
 
     case 'DSPScheduledMessage':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_DSPScheduledMessage
+        isSimplifiedDuisResponse_ResponseMessage_DSPScheduledMessage,
       )
 
     case 'DSPScheduleID':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_DSPScheduleID
+        isSimplifiedDuisResponse_ResponseMessage_DSPScheduleID,
       )
 
     case 'DSPUpdateFirmwareWarning':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_DSPUpdateFirmwareWarning
+        isSimplifiedDuisResponse_ResponseMessage_DSPUpdateFirmwareWarning,
       )
 
     case 'DSPUpdatePPMIDFirmwareWarning':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_DSPUpdatePPMIDFirmwareWarning
+        isSimplifiedDuisResponse_ResponseMessage_DSPUpdatePPMIDFirmwareWarning,
       )
 
     case 'DSPWANMatrix':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_DSPWANMatrix
+        isSimplifiedDuisResponse_ResponseMessage_DSPWANMatrix,
       )
 
     case 'FutureDatedDeviceAlertMessage':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_FutureDatedDeviceAlertMessage
+        isSimplifiedDuisResponse_ResponseMessage_FutureDatedDeviceAlertMessage,
       )
     case 'GBCSPayload':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_GBCSPayload
+        isSimplifiedDuisResponse_ResponseMessage_GBCSPayload,
       )
     case 'LocalCommand':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_LocalCommand
+        isSimplifiedDuisResponse_ResponseMessage_LocalCommand,
       )
 
     case 'PreCommand':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_PreCommand
+        isSimplifiedDuisResponse_ResponseMessage_PreCommand,
       )
 
     case 'NoBody':
       return _isSimplifiedDuisResponseBody_ResponseMessage(
         o,
-        isSimplifiedDuisResponse_ResponseMessage_NoBody
+        isSimplifiedDuisResponse_ResponseMessage_NoBody,
       )
   }
 }
 
 export function isSimplifiedDuisResponseBody_ResponseMessage_Any(
-  o: unknown
+  o: unknown,
 ): o is
   | SimplifiedDuisResponse_ResponseMessage_CINMessage
   | SimplifiedDuisResponse_ResponseMessage_DSPInventory
@@ -738,7 +738,7 @@ export function isSimplifiedDuisResponseBody_ResponseMessage_Any(
 }
 
 export function isSimplifiedDuisResponseBody_ResponseMessage(
-  o: unknown
+  o: unknown,
 ): o is
   | SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_CINMessage>
   | SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_DSPInventory>
@@ -756,12 +756,12 @@ export function isSimplifiedDuisResponseBody_ResponseMessage(
   | SimplifiedDuisResponse_ResponseMessage<SimplifiedDuisResponse_ResponseMessage_NoBody> {
   return _isSimplifiedDuisResponseBody_ResponseMessage(
     o,
-    isSimplifiedDuisResponseBody_ResponseMessage_Any
+    isSimplifiedDuisResponseBody_ResponseMessage_Any,
   )
 }
 
 export function isSimplifiedDuisResponseBody_DeviceAlertMessage(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_DeviceAlertMessage {
   const x = o as SimplifiedDuisResponse_DeviceAlertMessage
   return (
@@ -771,17 +771,17 @@ export function isSimplifiedDuisResponseBody_DeviceAlertMessage(
     typeof x.DeviceAlertMessage === 'object' &&
     typeof x.DeviceAlertMessage.AlertCode === 'string' &&
     ['number', 'undefined'].indexOf(
-      typeof x.DeviceAlertMessage.ThrottledAlertSequenceId
+      typeof x.DeviceAlertMessage.ThrottledAlertSequenceId,
     ) >= 0 &&
     ['number', 'undefined'].indexOf(
-      typeof x.DeviceAlertMessage.ThrottledAlertCount
+      typeof x.DeviceAlertMessage.ThrottledAlertCount,
     ) >= 0 &&
     typeof x.DeviceAlertMessage.GBCSPayload === 'string'
   )
 }
 
 export function isSimplifiedDuisResponseBody_DCCAlertMessage(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponse_DCCAlertMessage {
   const x = o as SimplifiedDuisResponse_DCCAlertMessage
   return (
@@ -791,17 +791,17 @@ export function isSimplifiedDuisResponseBody_DCCAlertMessage(
     typeof x.DCCAlertMessage === 'object' &&
     typeof x.DCCAlertMessage.DCCAlertCode === 'string' &&
     ['number', 'undefined'].indexOf(
-      typeof x.DCCAlertMessage.ThrottledAlertSequenceId
+      typeof x.DCCAlertMessage.ThrottledAlertSequenceId,
     ) >= 0 &&
     ['number', 'undefined'].indexOf(
-      typeof x.DCCAlertMessage.ThrottledAlertCount
+      typeof x.DCCAlertMessage.ThrottledAlertCount,
     ) >= 0 &&
     isXMLData(x.DCCAlertMessage.DCCAlert)
   )
 }
 
 export function isSimplifiedDuisResponseBody(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisResponseBody {
   return (
     isSimplifiedDuisResponseBody_ResponseMessage(o) ||
@@ -821,11 +821,11 @@ export function isSimplifiedDuisOutput(o: unknown): o is SimplifiedDuisOutput {
     (o: unknown): o is bigint => typeof o === 'bigint',
     isCommandVariant,
     isServiceReferenceVariant,
-    isSimplifiedDuisResponseBody
+    isSimplifiedDuisResponseBody,
   )
 }
 export function isSimplifiedDuisOutputRequest(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisOutputRequest {
   return isSimplifiedDuisRequest<
     bigint,
@@ -835,16 +835,16 @@ export function isSimplifiedDuisOutputRequest(
     o,
     (o: unknown): o is bigint => typeof o === 'bigint',
     isCommandVariant,
-    isServiceReferenceVariant
+    isServiceReferenceVariant,
   )
 }
 export function isSimplifiedDuisOutputResponse(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisOutputResponse {
   return isSimplifiedDuisResponse(
     o,
     (o: unknown): o is bigint => typeof o === 'bigint',
-    isSimplifiedDuisResponseBody
+    isSimplifiedDuisResponseBody,
   )
 }
 
@@ -864,12 +864,12 @@ export function isSimplifiedDuisInput(o: unknown): o is SimplifiedDuisInput {
     (o: unknown): o is ServiceReferenceVariant | string => {
       return typeof o === 'string' || isServiceReferenceVariant(o)
     },
-    isSimplifiedDuisResponseBody
+    isSimplifiedDuisResponseBody,
   )
 }
 
 export function isSimplifiedDuisInputRequest(
-  o: unknown
+  o: unknown,
 ): o is SimplifiedDuisInputRequest {
   return isSimplifiedDuisRequest<
     number | bigint,
@@ -884,6 +884,6 @@ export function isSimplifiedDuisInputRequest(
     },
     (o: unknown): o is ServiceReferenceVariant | string => {
       return typeof o === 'string' || isServiceReferenceVariant(o)
-    }
+    },
   )
 }

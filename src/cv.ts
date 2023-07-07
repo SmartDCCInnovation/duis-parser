@@ -244,7 +244,7 @@ export function isCommandVariant(o: unknown): o is CommandVariant {
       return Object.keys(spec).every(
         (k) =>
           (spec as Record<string, string | number>)[k] ===
-          (x as Record<string, string | number>)[k]
+          (x as Record<string, string | number>)[k],
       )
     } catch {
       return false

@@ -14,12 +14,12 @@ export interface ServiceReferenceVariant {
 
 export function lookupSRV(srv: string): ServiceReferenceVariant | undefined {
   return matrix.find(
-    (q) => q['Service Reference Variant'] === srv
+    (q) => q['Service Reference Variant'] === srv,
   ) as ServiceReferenceVariant
 }
 
 export function isServiceReferenceVariant(
-  o: unknown
+  o: unknown,
 ): o is ServiceReferenceVariant {
   const x = o as ServiceReferenceVariant
   const p =
@@ -47,10 +47,10 @@ export function isServiceReferenceVariant(
         x['DCC Scheduled'] === candidate['DCC Scheduled'] &&
         x['Non-Device Request'] === candidate['Non-Device Request'] &&
         x['Eligible User Roles'].every(
-          (role) => candidate['Eligible User Roles'].indexOf(role) >= 0
+          (role) => candidate['Eligible User Roles'].indexOf(role) >= 0,
         ) &&
         candidate['Eligible User Roles'].every(
-          (role) => x['Eligible User Roles'].indexOf(role) >= 0
+          (role) => x['Eligible User Roles'].indexOf(role) >= 0,
         )
       )
     }
