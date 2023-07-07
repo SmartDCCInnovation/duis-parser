@@ -30,7 +30,7 @@ export function addPrefixToObject(prefix: string, o: unknown): unknown {
             return { [k]: p }
           }
           return { [`${prefix}${k}`]: addPrefixToObject(prefix, p) }
-        })
+        }),
       )
     }
   }
