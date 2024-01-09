@@ -218,12 +218,14 @@ export function constructDuis(
       if (simple.header.requestId) {
         ;((object['sr:Response'] as XMLData)['sr:Header'] as XMLData)[
           'sr:RequestID'
-        ] = `${simple.header.requestId.originatorId}:${simple.header.requestId.targetId}:${simple.header.requestId.counter}`
+        ] =
+          `${simple.header.requestId.originatorId}:${simple.header.requestId.targetId}:${simple.header.requestId.counter}`
       }
       if (simple.header.responseId) {
         ;((object['sr:Response'] as XMLData)['sr:Header'] as XMLData)[
           'sr:ResponseID'
-        ] = `${simple.header.responseId.originatorId}:${simple.header.responseId.targetId}:${simple.header.responseId.counter}`
+        ] =
+          `${simple.header.responseId.originatorId}:${simple.header.responseId.targetId}:${simple.header.responseId.counter}`
       }
     }
   }
