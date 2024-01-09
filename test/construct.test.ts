@@ -35,7 +35,7 @@ describe('constructDuis/simple', () => {
           },
           serviceReference: '4.1',
           serviceReferenceVariant: srv.lookupSRV(
-            '4.1.1'
+            '4.1.1',
           ) as srv.ServiceReferenceVariant,
         },
         body: {
@@ -44,7 +44,7 @@ describe('constructDuis/simple', () => {
       }
       /* below string passes xsd validation (ignoring missing xmldsig) */
       expect(parser.constructDuis('simplified', x)).toBe(
-        '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body><sr:ReadInstantaneousImportRegisters></sr:ReadInstantaneousImportRegisters></sr:Body></sr:Request>'
+        '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body><sr:ReadInstantaneousImportRegisters></sr:ReadInstantaneousImportRegisters></sr:Body></sr:Request>',
       )
     })
 
@@ -66,7 +66,7 @@ describe('constructDuis/simple', () => {
         },
       }
       expect(parser.constructDuis('simplified', x)).toBe(
-        '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body><sr:ReadInstantaneousImportRegisters></sr:ReadInstantaneousImportRegisters></sr:Body></sr:Request>'
+        '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body><sr:ReadInstantaneousImportRegisters></sr:ReadInstantaneousImportRegisters></sr:Body></sr:Request>',
       )
     })
 
@@ -82,7 +82,7 @@ describe('constructDuis/simple', () => {
           },
           serviceReference: '4.1',
           serviceReferenceVariant: srv.lookupSRV(
-            '4.1.1'
+            '4.1.1',
           ) as srv.ServiceReferenceVariant,
         },
         body: {
@@ -90,7 +90,7 @@ describe('constructDuis/simple', () => {
         },
       }
       expect(
-        parser.parseDuis('simplified', parser.constructDuis('simplified', x))
+        parser.parseDuis('simplified', parser.constructDuis('simplified', x)),
       ).toStrictEqual(x)
     })
 
@@ -113,7 +113,47 @@ describe('constructDuis/simple', () => {
         },
       }
       expect(parser.constructDuis('simplified', x)).toBe(
-        '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body index="3">1</sr:Body></sr:Request>'
+        '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body index="3">1</sr:Body></sr:Request>',
+      )
+    })
+
+    test('nominal-string-list', () => {
+      const x: parser.SimplifiedDuisInput = {
+        header: {
+          type: 'request',
+          commandVariant: 1,
+          requestId: {
+            originatorId: '90-B3-D5-1F-30-01-00-00',
+            targetId: '00-DB-12-34-56-78-90-A0',
+            counter: BigInt(1000),
+          },
+          serviceReference: '6.24',
+          serviceReferenceVariant: '6.24.1',
+        },
+        body: {
+          RetrieveDeviceSecurityCredentialsKRP: {
+            RemotePartyRole: ['Supplier', 'NetworkOperator'],
+          },
+        },
+      }
+      expect(parser.constructDuis('simplified', x, '5.2')).toBe(
+        `
+<?xml version="1.0" encoding="UTF-8"?>
+<sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.2">
+  <sr:Header>
+    <sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A0:1000</sr:RequestID>
+    <sr:CommandVariant>1</sr:CommandVariant>
+    <sr:ServiceReference>6.24</sr:ServiceReference>
+    <sr:ServiceReferenceVariant>6.24.1</sr:ServiceReferenceVariant>
+  </sr:Header>
+  <sr:Body>
+    <sr:RetrieveDeviceSecurityCredentialsKRP>
+      <sr:RemotePartyRole>Supplier</sr:RemotePartyRole>
+      <sr:RemotePartyRole>NetworkOperator</sr:RemotePartyRole>
+    </sr:RetrieveDeviceSecurityCredentialsKRP>
+  </sr:Body>
+</sr:Request>
+        `.replace(/\n */g, ''),
       )
     })
   })
@@ -140,7 +180,7 @@ describe('constructDuis/simple', () => {
       }
       /* below string passes xsd validation (ignoring missing xmldsig) */
       expect(parser.constructDuis('simplified', x)).toBe(
-        '<?xml version="1.0" encoding="UTF-8"?><sr:Response xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:ResponseCode>E65</sr:ResponseCode><sr:ResponseDateTime>2022-07-22T09:37:56.134Z</sr:ResponseDateTime><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID></sr:Header><sr:Body><sr:ResponseMessage><sr:ServiceReference>11.2</sr:ServiceReference><sr:ServiceReferenceVariant>11.2</sr:ServiceReferenceVariant></sr:ResponseMessage></sr:Body></sr:Response>'
+        '<?xml version="1.0" encoding="UTF-8"?><sr:Response xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:ResponseCode>E65</sr:ResponseCode><sr:ResponseDateTime>2022-07-22T09:37:56.134Z</sr:ResponseDateTime><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID></sr:Header><sr:Body><sr:ResponseMessage><sr:ServiceReference>11.2</sr:ServiceReference><sr:ServiceReferenceVariant>11.2</sr:ServiceReferenceVariant></sr:ResponseMessage></sr:Body></sr:Response>',
       )
     })
 
@@ -164,7 +204,7 @@ describe('constructDuis/simple', () => {
         },
       }
       expect(
-        parser.parseDuis('simplified', parser.constructDuis('simplified', x))
+        parser.parseDuis('simplified', parser.constructDuis('simplified', x)),
       ).toStrictEqual(x)
     })
 
@@ -188,7 +228,7 @@ describe('constructDuis/simple', () => {
         },
       }
       expect(
-        parser.parseDuis('simplified', parser.constructDuis('simplified', x))
+        parser.parseDuis('simplified', parser.constructDuis('simplified', x)),
       ).toStrictEqual(x)
     })
   })

@@ -97,7 +97,7 @@ export function isResponseHeader<C>(
  * General tree structure of strings to hold parsed DUIS.
  */
 export interface XMLData {
-  [key: string]: string | XMLData | XMLData[]
+  [key: string]: string | string[] | XMLData | XMLData[]
 }
 
 export function isXMLData(o: unknown): o is XMLData {
@@ -110,7 +110,9 @@ export function isXMLData(o: unknown): o is XMLData {
       (k) =>
         typeof x[k] === 'string' ||
         isXMLData(x[k]) ||
-        (Array.isArray(x[k]) && (x[k] as XMLData[]).every(isXMLData)),
+        (Array.isArray(x[k]) &&
+          ((x[k] as XMLData[]).every(isXMLData) ||
+            (x[k] as string[]).every((z) => typeof z === 'string'))),
     )
   )
 }
