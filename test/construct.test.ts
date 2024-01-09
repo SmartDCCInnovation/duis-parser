@@ -20,6 +20,7 @@
 import * as parser from '../src/index'
 import * as cv from '../src/cv'
 import * as srv from '../src/srv'
+import { version } from 'os'
 
 describe('constructDuis/simple', () => {
   describe('request', () => {
@@ -43,7 +44,7 @@ describe('constructDuis/simple', () => {
         },
       }
       /* below string passes xsd validation (ignoring missing xmldsig) */
-      expect(parser.constructDuis('simplified', x)).toBe(
+      expect(parser.constructDuis('simplified', x, '5.1')).toBe(
         '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body><sr:ReadInstantaneousImportRegisters></sr:ReadInstantaneousImportRegisters></sr:Body></sr:Request>',
       )
     })
@@ -65,7 +66,7 @@ describe('constructDuis/simple', () => {
           ReadInstantaneousImportRegisters: '',
         },
       }
-      expect(parser.constructDuis('simplified', x)).toBe(
+      expect(parser.constructDuis('simplified', x, '5.1')).toBe(
         '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body><sr:ReadInstantaneousImportRegisters></sr:ReadInstantaneousImportRegisters></sr:Body></sr:Request>',
       )
     })
@@ -112,7 +113,7 @@ describe('constructDuis/simple', () => {
           '@_index': '3',
         },
       }
-      expect(parser.constructDuis('simplified', x)).toBe(
+      expect(parser.constructDuis('simplified', x, '5.1')).toBe(
         '<?xml version="1.0" encoding="UTF-8"?><sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.1"><sr:Header><sr:RequestID>90-B3-D5-1F-30-01-00-00:00-DB-12-34-56-78-90-A3:9001</sr:RequestID><sr:CommandVariant>1</sr:CommandVariant><sr:ServiceReference>4.1</sr:ServiceReference><sr:ServiceReferenceVariant>4.1.1</sr:ServiceReferenceVariant></sr:Header><sr:Body index="3">1</sr:Body></sr:Request>',
       )
     })
@@ -136,7 +137,7 @@ describe('constructDuis/simple', () => {
           },
         },
       }
-      expect(parser.constructDuis('simplified', x, '5.2')).toBe(
+      expect(parser.constructDuis('simplified', x)).toBe(
         `
 <?xml version="1.0" encoding="UTF-8"?>
 <sr:Request xmlns:sr="http://www.dccinterface.co.uk/ServiceUserGateway" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" schemaVersion="5.2">
@@ -204,7 +205,10 @@ describe('constructDuis/simple', () => {
         },
       }
       expect(
-        parser.parseDuis('simplified', parser.constructDuis('simplified', x)),
+        parser.parseDuis(
+          'simplified',
+          parser.constructDuis('simplified', x, '5.1'),
+        ),
       ).toStrictEqual(x)
     })
 
