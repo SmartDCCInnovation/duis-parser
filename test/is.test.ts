@@ -21,6 +21,9 @@ import * as cv from '../src/cv'
 import * as index from '../src/index'
 import * as srv from '../src/srv'
 import * as duis from '../src/duis'
+import * as parser from '../src/index'
+import { readFile } from 'node:fs/promises'
+import { resolve } from 'node:path'
 
 describe('typeing judgements', () => {
   describe('CommandVariant', () => {
@@ -46,8 +49,8 @@ describe('typeing judgements', () => {
     test('nominal', () => {
       ;[1, 2, 3, 4, 5, 6, 7, 8].forEach((i) =>
         expect(
-          cv.isCommandVariant(cv.lookupCV(i as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8))
-        ).toBeTruthy()
+          cv.isCommandVariant(cv.lookupCV(i as 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8)),
+        ).toBeTruthy(),
       )
     })
 
@@ -61,7 +64,7 @@ describe('typeing judgements', () => {
           output: 'Command and Command for Local Delivery',
           webService: 'Send Command Service',
           critical: 'No',
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -75,7 +78,7 @@ describe('typeing judgements', () => {
           output: 'Command and Command for Local Delivery',
           webService: 'Send Command Service',
           critical: 'No',
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -89,7 +92,7 @@ describe('typeing judgements', () => {
           output: 'Command and Command for Local Delivery',
           webService: 'Send Command Service',
           critical: 'No',
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -102,7 +105,7 @@ describe('typeing judgements', () => {
           input: 'Service Request',
           output: 'Command and Command for Local Delivery',
           webService: 'Send Command Service',
-        })
+        }),
       ).toBeFalsy()
     })
   })
@@ -139,7 +142,7 @@ describe('typeing judgements', () => {
           'DCC Scheduled': 'No',
           'Non-Device Request': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -154,7 +157,7 @@ describe('typeing judgements', () => {
           'DCC Scheduled': 'No',
           'Non-Device Request': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -169,7 +172,7 @@ describe('typeing judgements', () => {
           'DCC Scheduled': 'No',
           'Non-Device Request': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -184,7 +187,7 @@ describe('typeing judgements', () => {
           'DCC Scheduled': 'No',
           'Non-Device Request': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -199,7 +202,7 @@ describe('typeing judgements', () => {
           'DCC Scheduled': 'No',
           'Non-Device Request': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -214,7 +217,7 @@ describe('typeing judgements', () => {
           'DCC Scheduled': 'No',
           'Non-Device Request': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -229,7 +232,7 @@ describe('typeing judgements', () => {
           'DCC Scheduled': 'No',
           'Non-Device Request': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -244,7 +247,7 @@ describe('typeing judgements', () => {
           'Future Dated Response Pattern': 'Device',
           'Non-Device Request': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -259,7 +262,7 @@ describe('typeing judgements', () => {
           'Future Dated Response Pattern': 'Device',
           'DCC Scheduled': 'No',
           'Eligible User Roles': ['IS'],
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -274,7 +277,7 @@ describe('typeing judgements', () => {
           'Future Dated Response Pattern': 'Device',
           'DCC Scheduled': 'No',
           'Non-Device Request': 'No',
-        })
+        }),
       ).toBeFalsy()
     })
   })
@@ -310,8 +313,8 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: BigInt(0),
             },
-            isBigInt
-          )
+            isBigInt,
+          ),
         ).toBeTruthy()
       })
 
@@ -323,8 +326,8 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: 0,
             },
-            isBigInt
-          )
+            isBigInt,
+          ),
         ).toBeFalsy()
       })
 
@@ -335,8 +338,8 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: BigInt(0),
             },
-            isBigInt
-          )
+            isBigInt,
+          ),
         ).toBeFalsy()
       })
       test('missing-target', () => {
@@ -346,8 +349,8 @@ describe('typeing judgements', () => {
               originatorId: 'string',
               counter: BigInt(0),
             },
-            isBigInt
-          )
+            isBigInt,
+          ),
         ).toBeFalsy()
       })
       test('missing-counter', () => {
@@ -357,8 +360,8 @@ describe('typeing judgements', () => {
               originatorId: 'string',
               targetId: 'string',
             },
-            isBigInt
-          )
+            isBigInt,
+          ),
         ).toBeFalsy()
       })
 
@@ -370,8 +373,8 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: '0',
             },
-            isBigInt
-          )
+            isBigInt,
+          ),
         ).toBeFalsy()
       })
     })
@@ -407,8 +410,8 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: BigInt(0),
             },
-            isBigIntOrNumber
-          )
+            isBigIntOrNumber,
+          ),
         ).toBeTruthy()
       })
 
@@ -420,8 +423,8 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: 0,
             },
-            isBigIntOrNumber
-          )
+            isBigIntOrNumber,
+          ),
         ).toBeTruthy()
       })
 
@@ -432,8 +435,8 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: BigInt(0),
             },
-            isBigIntOrNumber
-          )
+            isBigIntOrNumber,
+          ),
         ).toBeFalsy()
       })
       test('missing-target', () => {
@@ -443,8 +446,8 @@ describe('typeing judgements', () => {
               originatorId: 'string',
               counter: BigInt(0),
             },
-            isBigIntOrNumber
-          )
+            isBigIntOrNumber,
+          ),
         ).toBeFalsy()
       })
       test('missing-counter', () => {
@@ -454,8 +457,8 @@ describe('typeing judgements', () => {
               originatorId: 'string',
               targetId: 'string',
             },
-            isBigIntOrNumber
-          )
+            isBigIntOrNumber,
+          ),
         ).toBeFalsy()
       })
 
@@ -467,8 +470,8 @@ describe('typeing judgements', () => {
               targetId: 'string',
               counter: '0',
             },
-            isBigIntOrNumber
-          )
+            isBigIntOrNumber,
+          ),
         ).toBeFalsy()
       })
     })
@@ -482,8 +485,8 @@ describe('typeing judgements', () => {
           undefined,
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
     test('null', () => {
@@ -492,8 +495,8 @@ describe('typeing judgements', () => {
           null,
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
     test('list', () => {
@@ -502,8 +505,8 @@ describe('typeing judgements', () => {
           [],
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
     test('number', () => {
@@ -512,8 +515,8 @@ describe('typeing judgements', () => {
           5,
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
     test('string', () => {
@@ -522,8 +525,8 @@ describe('typeing judgements', () => {
           '',
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
     test('empty', () => {
@@ -532,8 +535,8 @@ describe('typeing judgements', () => {
           {},
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
 
@@ -553,8 +556,8 @@ describe('typeing judgements', () => {
           },
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeTruthy()
     })
 
@@ -574,8 +577,8 @@ describe('typeing judgements', () => {
           },
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
 
@@ -594,8 +597,8 @@ describe('typeing judgements', () => {
           },
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
 
@@ -610,8 +613,8 @@ describe('typeing judgements', () => {
           },
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
 
@@ -630,8 +633,8 @@ describe('typeing judgements', () => {
           },
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
 
@@ -650,8 +653,8 @@ describe('typeing judgements', () => {
           },
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
 
@@ -670,8 +673,8 @@ describe('typeing judgements', () => {
           },
           isBigInt,
           cv.isCommandVariant,
-          srv.isServiceReferenceVariant
-        )
+          srv.isServiceReferenceVariant,
+        ),
       ).toBeFalsy()
     })
   })
@@ -716,8 +719,8 @@ describe('typeing judgements', () => {
             responseCode: 'string',
             responseDateTime: 'string',
           },
-          isBigInt
-        )
+          isBigInt,
+        ),
       ).toBeTruthy()
     })
 
@@ -734,8 +737,8 @@ describe('typeing judgements', () => {
             responseCode: 'string',
             responseDateTime: 'string',
           },
-          isBigInt
-        )
+          isBigInt,
+        ),
       ).toBeTruthy()
     })
 
@@ -752,8 +755,8 @@ describe('typeing judgements', () => {
             responseCode: 'string',
             responseDateTime: 'string',
           },
-          isBigInt
-        )
+          isBigInt,
+        ),
       ).toBeTruthy()
     })
 
@@ -775,8 +778,8 @@ describe('typeing judgements', () => {
             responseCode: 'string',
             responseDateTime: 'string',
           },
-          isBigInt
-        )
+          isBigInt,
+        ),
       ).toBeFalsy()
     })
 
@@ -798,8 +801,8 @@ describe('typeing judgements', () => {
             responseCode: 'string',
             responseDateTime: 'string',
           },
-          isBigInt
-        )
+          isBigInt,
+        ),
       ).toBeFalsy()
     })
 
@@ -817,8 +820,8 @@ describe('typeing judgements', () => {
             responseCode: 'string',
             responseDateTime: 'string',
           },
-          isBigInt
-        )
+          isBigInt,
+        ),
       ).toBeFalsy()
     })
 
@@ -839,8 +842,8 @@ describe('typeing judgements', () => {
             },
             responseDateTime: 'string',
           },
-          isBigInt
-        )
+          isBigInt,
+        ),
       ).toBeFalsy()
     })
 
@@ -861,8 +864,8 @@ describe('typeing judgements', () => {
             },
             responseCode: 'string',
           },
-          isBigInt
-        )
+          isBigInt,
+        ),
       ).toBeFalsy()
     })
   })
@@ -893,7 +896,7 @@ describe('typeing judgements', () => {
         index.isXMLData({
           a: 'b',
           '@@_bcdf': 'kjlkj',
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -909,7 +912,7 @@ describe('typeing judgements', () => {
             },
           },
           '@@_bcdf': 'kjlkj',
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -921,7 +924,19 @@ describe('typeing judgements', () => {
             c: [{ d: '9998' }, { d: '9999' }],
           },
           '@@_bcdf': 'kjlkj',
-        })
+        }),
+      ).toBeTruthy()
+    })
+
+    test('nominal-list/flat', () => {
+      expect(
+        index.isXMLData({
+          a: {
+            b: 'c',
+            c: ['9998', '9999'],
+          },
+          '@@_bcdf': 'kjlkj',
+        }),
       ).toBeTruthy()
     })
 
@@ -937,7 +952,7 @@ describe('typeing judgements', () => {
             },
           },
           '@@_bcdf': 'kjlkj',
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -953,7 +968,7 @@ describe('typeing judgements', () => {
             },
           },
           '@@_bcdf': 'kjlkj',
-        })
+        }),
       ).toBeFalsy()
     })
   })
@@ -968,8 +983,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
     test('null', () => {
@@ -979,8 +994,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
     test('list', () => {
@@ -990,8 +1005,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
     test('number', () => {
@@ -1001,8 +1016,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
     test('string', () => {
@@ -1012,8 +1027,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
     test('empty', () => {
@@ -1023,8 +1038,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
 
@@ -1048,8 +1063,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeTruthy()
     })
 
@@ -1072,8 +1087,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeTruthy()
     })
 
@@ -1087,8 +1102,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
 
@@ -1101,8 +1116,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
 
@@ -1129,8 +1144,8 @@ describe('typeing judgements', () => {
           isBigInt,
           cv.isCommandVariant,
           srv.isServiceReferenceVariant,
-          duis.isSimplifiedDuisResponseBody
-        )
+          duis.isSimplifiedDuisResponseBody,
+        ),
       ).toBeFalsy()
     })
   })
@@ -1170,7 +1185,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1189,7 +1204,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeFalsy()
     })
   })
@@ -1229,7 +1244,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1247,7 +1262,7 @@ describe('typeing judgements', () => {
             responseDateTime: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -1266,8 +1281,22 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeFalsy()
+    })
+
+    test('CS02aMAC/simplified', async () => {
+      const buffer = await readFile(
+        resolve(
+          __dirname,
+          'resources',
+          'CS02aMAC_6.24.1_SUCCESS_REQUEST_DUIS.XML',
+        ),
+      )
+      const result = parser.parseDuis('simplified', buffer)
+      expect(result).toBeTruthy()
+
+      expect(duis.isSimplifiedDuisOutputRequest(result)).toBeTruthy()
     })
   })
 
@@ -1310,7 +1339,7 @@ describe('typeing judgements', () => {
               ServiceReferenceVariant: '1.2',
             },
           },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1329,7 +1358,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeFalsy()
     })
   })
@@ -1369,7 +1398,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1388,7 +1417,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1407,7 +1436,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1426,7 +1455,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -1457,7 +1486,7 @@ describe('typeing judgements', () => {
               serviceReferenceVariant: 'string',
             },
             body: { a: 'c' },
-          })
+          }),
         ).toBe(l[1])
       })
     })
@@ -1498,7 +1527,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1517,7 +1546,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1536,7 +1565,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: srv.lookupSRV('1.1.1'),
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
 
@@ -1555,7 +1584,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeFalsy()
     })
 
@@ -1586,7 +1615,7 @@ describe('typeing judgements', () => {
               serviceReferenceVariant: 'string',
             },
             body: { a: 'c' },
-          })
+          }),
         ).toBe(l[1])
       })
     })
@@ -1606,7 +1635,7 @@ describe('typeing judgements', () => {
             serviceReferenceVariant: 'string',
           },
           body: { a: 'c' },
-        })
+        }),
       ).toBeTruthy()
     })
   })
