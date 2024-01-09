@@ -116,7 +116,7 @@ const xml: string = constructDuis('simplified', duis)
 When reconstructing, it is not required to give the full meta-data objects for
 `commandVariant` and `serviceReferenceVariant`. Instead, their simple types can
 be provided, thus the following will produce and equivalent XML as the example
-above.
+above (notice).
 
 ```js
 {
@@ -127,7 +127,7 @@ above.
       targetId: '00-db-12-34-56-78-90-a0',
       counter: 1000n
     },
-    commandVariant: '1',
+    commandVariant: 1,
     serviceReference: '4.1',
     serviceReferenceVariant: '4.1.1'
   },
@@ -135,8 +135,61 @@ above.
 }
 ```
 
-To sign the resulting string for use with DCC Boxed, please see the
-[SmartDCCInnovation/dccboxed-signing-tool][sign] tool.
+As another example. It is often not convenient (or necessary) to enter the
+counter as a `BigInt` as in the above example, the counter can be provided as a
+normal integer. This means the input can be JSON:
+
+```json
+{
+    "header": {
+        "type": "request",
+        "requestId": {
+            "originatorId": "90-b3-d5-1f-30-01-00-00",
+            "targetId": "00-db-12-34-56-78-90-a0",
+            "counter": 0
+        },
+        "commandVariant": 1,
+        "serviceReference": "6.24",
+        "serviceReferenceVariant": "6.24.1"
+    },
+    "body": {
+        "RetrieveDeviceSecurityCredentialsKRP": {
+            "RemotePartyRole": [{"#text": "Root"}, {"#text": "Supplier"}, {"#text": "TransCoS"}]
+        }
+    }
+}
+```
+
+In the above example, the usage of `#text` is required to build multiple
+`RemotePartyRole` entities. This is documented within the `fast-xml-parser`
+manual. But as an example, if only one `RemotePartyRole` is needed, then this
+can be simplified to:
+
+```json
+{
+    "header": {
+        "type": "request",
+        "requestId": {
+            "originatorId": "90-b3-d5-1f-30-01-00-00",
+            "targetId": "00-db-12-34-56-78-90-a0",
+            "counter": 0
+        },
+        "commandVariant": 1,
+        "serviceReference": "6.24",
+        "serviceReferenceVariant": "6.24.1"
+    },
+    "body": {
+        "RetrieveDeviceSecurityCredentialsKRP": {
+            "RemotePartyRole": "Supplier"
+        }
+    }
+}
+```
+
+#### Signing DUIS
+
+To sign the resulting payload from `constructDuis` for use with DCC Boxed,
+please see the [SmartDCCInnovation/dccboxed-signing-tool][sign] tool.
 
 ### Advanced
 
