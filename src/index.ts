@@ -183,7 +183,7 @@ export function constructDuis(
         'sr:Request': {
           '@_xmlns:sr': 'http://www.dccinterface.co.uk/ServiceUserGateway',
           '@_xmlns:xsi': 'http://www.w3.org/2001/XMLSchema-instance',
-          '@_schemaVersion': version ?? '5.1',
+          '@_schemaVersion': version ?? '5.2',
           'sr:Header': {
             'sr:RequestID': `${simple.header.requestId.originatorId}:${simple.header.requestId.targetId}:${simple.header.requestId.counter}`,
             'sr:CommandVariant':
