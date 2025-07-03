@@ -240,6 +240,6 @@ describe('constructDuis/simple', () => {
   test('bad-input', () => {
     expect(() => {
       parser.constructDuis('simplified', {} as parser.SimplifiedDuisInput)
-    }).toThrowError('input is not simplifed duis')
+    }).toThrow('input is not simplifed duis')
   })
 })
