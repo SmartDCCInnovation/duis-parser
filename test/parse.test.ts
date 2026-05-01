@@ -123,6 +123,20 @@ describe('parser SRV 4.1.1/simplified', () => {
     })
   })
 
+  test('newline-entity', async () => {
+    const buffer = await readFile(
+      resolve(__dirname, 'resources', 'readfw-response.xml'),
+    )
+    const result = parser.parseDuis('normal', buffer)
+    expect(result).toMatchObject({
+      'sr:Response': {
+        'ds:Signature': {
+          'ds:SignatureValue': 'NaXpbvRklP6JBVoH/4r/Uwi24/2JjKXQ9MYGysXbywfkyNmKNfQa3cU/mPZHYVLMVjrjXcb5gJMV\r rJNjTBiUHQ==',
+        },
+      },
+    })
+  })
+
   test('lower-case', async () => {
     const buffer = await readFile(
       resolve(
